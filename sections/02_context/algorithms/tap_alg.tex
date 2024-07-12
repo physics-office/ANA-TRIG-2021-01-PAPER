@@ -1,0 +1,61 @@
+%%% Coloring the comment as blue
+\newcommand\mycommfont[1]{\footnotesize\ttfamily\textcolor{blue}{#1}}
+\SetCommentSty{mycommfont}
+\SetKwInput{KwInput}{Input}                % Set the Input
+\SetKwInput{KwOutput}{Output}              % set the Output
+
+
+
+\begin{algorithm}[H]
+    \DontPrintSemicolon
+    \tcc{list of all offline electrons objects in this event.}
+    \KwInput{electrons} 
+    \tcc{list of offline probe electrons.}
+    \KwOutput{probes} 
+
+ 
+
+    \tcc{Loop over offline tag electrons}
+    \For{tag \leftarrow electrons}
+    {
+        \If{ it does not comply with all offline-reconstructed electron tag}
+        {
+            continue
+        }
+
+        \tcc{Loop over offline probe electrons}
+        \For{probe \leftarrow electrons}
+        {
+            \If{tag = probe}
+            {
+                continue
+            }
+
+            \If{ tag and probe charge is the same}
+            {
+                continue
+            }
+
+            Mass $\leftarrow$ compute the mass of the tag and probe electron pair
+
+
+            \If{ 80 GeV < Mass < 100 GeV }
+            {
+                \If{ it comply all offline-reconstructed electron probe }
+                {
+                    append probe electron into the probes list
+                }
+
+            }
+
+        }
+
+    }
+  
+
+\caption{Tag and Probe algorithm}
+\label{alg:tap_zee}
+\end{algorithm}
+
+
+

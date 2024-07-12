@@ -1,0 +1,38 @@
+
+\begin{table}[ht!]%\footnotesize
+\centering
+\caption{Event selection for tuning the models and defining the discriminant
+requirements of the \rnn operating in the Run 2. Symbol ``\veto'' is used to
+indicate that the physics object is considered when it is rejected by the
+criterion. The label `mc15' corresponds to simulated data based on Monte Carlo
+algorithms and `Tier0' correspond to ATLAS experimental
+data \cite{aad2020performance}.}\label{tab:event_selection}
+% TODO Explain why not loose and not Zee
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lp{6.8cm}cc}
+\hline \hline
+Type & Dataset & \TnP & Offline Selection \\
+\hline \hline
+\multicolumn{4}{c}{2017 Models} \\
+\hline
+signal &
+mc15\_13TeV.361106.PowhegPythia8EvtGen\allowbreak{}\_AZNLOCTEQ6L1\_Zee.merge.AOD.\allowbreak{}e3601\_s2876\_r7917\_r7676
+& \Zee & None \\
+background &
+mc15\_13TeV.423300.Pythia8EvtGen\allowbreak{}\_A14NNPDF23LO\_perf\_JF17.merge.AOD.\allowbreak{}e3848\_s2876\_r7917\_r7676
+& None & None \\
+\hline
+\multicolumn{4}{c}{2017 Discriminant Requirements} \\
+\hline
+signal & 2016 Tier0 + EGAM1 (p3013) + GRL v88 & \Zee & \tight \\
+background & 2016 Tier0 + EGAM7 (p3013) + GRL v88 & \veto\Zee & \veto\loose \\
+\hline
+\multicolumn{4}{c}{2018 Models and Discriminant Requirements} \\
+\hline
+signal & 2017 Tier0 + EGAM1 (p3336) + GRL v97 & \Zee & \tight \\
+background & 2017 Tier0 + EGAM7 (p3336) + GRL v97 & \veto\Zee & \veto\vloose \\
+\hline \hline
+\end{tabular}
+}
+\end{table}
+

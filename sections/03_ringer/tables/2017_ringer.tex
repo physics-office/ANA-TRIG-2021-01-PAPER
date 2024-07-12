@@ -1,0 +1,102 @@
+
+
+\begin{table}[ht!]\footnotesize
+\centering
+\caption{Summary of the tuning procedure and decision making strategies employed
+to obtain the \rnn for 2017 operation. See text for more
+details.}\label{tab:2017_ringer}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{p{6cm}p{10cm}}
+\hline
+\hline
+\hline
+Criterion & Value \\
+\hline
+\hline
+\multicolumn{2}{c}{Ensemble Composition} \\
+\hline
+\hline
+Model & Fully connected MLP, 1 hidden-layer ($\tanh(.)$) and 1 output ($\tanh(.)$) \\
+Phase space bins for Model Tuning &
+See Table~\ref{tab:ensemble_regions} \\
+%See Tables~\ref{tab:comp_etabins} and \ref{tab:comp_etbins} \\
+\hline
+\hline
+\multicolumn{2}{c}{MLP Training} \\
+\hline
+\hline
+Core Framework & \emph{FastNet} (~\cite{tuningtools}) \\
+Dataset and event selection & Simulation (Section~\ref{ssec:dataset})\\
+Input Features & Concentric ring sums of energy around the particle axis  \\
+Normalization & Absolute of the total ring energies (Section~\ref{top:pp}) \\
+Cost-function for tuning & MSE \\
+Back-propagation method & RPROP (default parameters, except $\eta^+=1.1$) \\
+Targets (Electron/Background) & +1/-1 \\
+Batch size & Number of observations in the smaller class \\
+Maximum number of training epochs & $\infty$ \\
+
+Over-training evaluation & Multi-stop (see text) using
+50 epochs stop criterion \\
+
+Working point reference & Baseline chain efficiencies at \hltcalo \\
+
+Evaluated structures & Number of hidden units ranging from 5 to 20 units \\
+
+Initializations & 100 (Nguyen-Widrow method) \\
+
+Cross-validation method & Stratified k-fold ($k=10$, validation set used for
+both testing and early stop computation) \\
+
+Cross-validation subset retrieval method & Split data uniformly into k subsets,
+random permutation not applied. Remaining samples are put one by one into the
+first subsets \\
+ROC extraction method & 1,000 linearly spaced points between model targets \\
+\hline
+\hline
+\multicolumn{2}{c}{Training Evaluation and Operating Model Selection } \\
+\hline
+\hline
+
+Working Point & ROC point closest to signal efficiency reference and \spmax{}
+value \\
+
+Best Initialization Choice & Lowest fake rate (validation set) when operating in
+a region of up to $\epsilon=0,2~\%$ of the reference signal efficiency \\
+
+Model Topology Selection & Graphical analysis using box plots \\
+
+Operating Model Choice & Lowest fake rate (using full stats.) when operating in
+a region of up to $\epsilon=0,2~\%$ of the reference signal efficiency \\
+
+Operation Extrapolation & Yes, eventual observations outside model phase
+space regions use the nearest expert model (in lowest Euclidean
+distance in $\et\times\eta$ axis) \\
+
+\hline
+\hline
+\multicolumn{2}{c}{Decision Making} \\
+\hline
+\hline
+
+Pile-up Efficiency Correction & Compute straight-line balancing efficiency within
+$\avgmu=[0,20,40]$ avg.\@ collisions \\
+Dataset and event selection & 2016 $13\;\text{TeV}$ p-p collision data
+(GRL: v88), except for reprocessing reference run \\
+Decision Making Strategy & Linear fit to the network output without applying the
+transfer function w.r.t. $\avgmu$ up to 40$\;$avg.\@ collisions.
+When $\avgmu>40$, set $\avgmu = 40$ (2016 upper bound) \\
+%Cross-Validation Method & None \\
+
+Phase space bins for Linear Fit & See
+Table~\ref{tab:ensemble_regions}\\
+%Tables~\ref{tab:comp_etabins} and~\ref{tab:comp_etbins} \\
+Target Working Point & Keep HLT signal efficiency of the proposed chain as near
+as possible from the respective baseline chain \\
+\hline
+\hline
+\hline
+\end{tabular}
+}
+\end{table}
+
+

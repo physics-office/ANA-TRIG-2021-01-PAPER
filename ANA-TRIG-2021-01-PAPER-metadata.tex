@@ -1,0 +1,118 @@
+%-------------------------------------------------------------------------------
+% This file contains the title, author and abstract.
+% It also contains all relevant document numbers used by the different cover pages.
+%-------------------------------------------------------------------------------
+
+% Title
+\AtlasTitle{Implementation and Performance of the Neural-Ringer Algorithm Selecting Electrons at the High Level Trigger of the ATLAS Experiment}
+
+% Draft version:
+% Should be 1.0 for the first circulation, and 2.0 for the second circulation.
+% If given, adds draft version on front page, a 'DRAFT' box on top of every other page, 
+% and line numbers.
+% Comment or remove in the final version.
+\AtlasVersion{1}
+
+% Abstract - % directly after { is important for correct indentation
+\AtlasAbstract{%
+The Neural-Ringer is an ensemble of neural networks operating the selection of electrons in the High Level Trigger (HLT) of the ATLAS experiment. In the second half of 2017, the Neural-Ringer was selecting electrons above 15 GeV, as part of an effort to reduce CPU usage and to comply with more stringent data taking conditions. 
+
+The ensemble is built from Multi-Layer Perceptron (MLP) models tuned for different regions on pseudo-rapidity and
+transverse energy bins, in order to minimize trigger performance impacts from both detector response and shower development energy dependencies. Here, for each possible candidate, the most appropriate one is selected to take the decision. The MLPs are fed from calorimetry information formatted into energy sums of concentric rings built around the particle
+axis. This paper describes the Neural-Ringer algorithm, its operation efficiency and the results from the analyses done for its characterization. Using this algorithm results in a 60~\% decrease in CPU demands for the lowest-threshold unprescaled single-electron trigger, while maintaining electron efficiency nearly unchanged. The analysis results show an overall CPU saving of 8~\%, when considering the
+demands of all electron and photon triggers. This increase of performance results from a higher jet background rejection from previous cut-based selection algorithm.
+}
+
+% Author - this does not work with revtex (add it after \begin{document})
+% This has to be commented out for TDR etc.
+% For PUB notes, add package authblk and use \thanks if an ACE/STA should be added.
+% See Section 4.2 of ATLAS LaTeX guide and latex/atlascontribute.sty for more details.
+% \author{The ATLAS Collaboration}
+
+% ATLAS reference code, to help ATLAS members to locate the paper
+\AtlasRefCode{TRIG-2021-01}
+
+% CERN preprint number
+% \PreprintIdNumber{CERN-EP-2024-XX}
+
+% ATLAS date - arXiv submission; usually filled in by the Physics Office
+% \AtlasDate{\today}
+
+% ATLAS heading - heading at top of title page. Set for TDR etc.
+% \AtlasHeading{ATLAS ABC TDR}
+
+% Keywords - some journals want keywords on the title page.
+% You have to pass the option keywords=true to atlasdoc for this to be effective.
+% \AtlasKeywords{keywords}
+
+% Copyright - use if something other than the default copyright is required.
+% You have to pass the option copyright=true to atlasdoc for this to be effective.
+% \AtlasCopyright{\the\year \ CERN for the benefit of the ATLAS Collaboration.\newline
+%   Reproduction of this article or parts of it is allowed as specified in the CC-BY-4.0 license.}
+
+% arXiv identifier
+% \arXivId{21XX.YYYY}
+
+% HepData record
+% \HepDataRecord{ZZZZZZZZ}
+
+% Submission journal and final reference
+% \AtlasJournal{Phys.\ Lett.\ B.}
+% \AtlasJournalRef{\PLB 789 (2023) 123}
+% \AtlasDOI{}
+
+% Some papers/public notes have a special author list.
+% If a special author list should be indicated via a link use the following code:
+% Include the two lines below if you do not use atlasstyle:
+% \usepackage[marginal,hang]{footmisc}
+% \setlength{\footnotemargin}{0.5em}
+% Use the following lines in all cases:
+% \usepackage{authblk}
+% \author{The ATLAS Collaboration%
+% \thanks{The full author list can be found at:\newline
+%   \url{https://atlas.web.cern.ch/Atlas/PUBNOTES/ATL-PHYS-PUB-2024-XXX/authorlist.pdf}}
+% }
+% You may need the following lines if the affiliation number does not appear as a superscript
+% when you are using authblk.
+% \makeatletter
+% \renewcommand\AB@authnote[1]{{\normalfont\textsuperscript{#1}}}
+% \renewcommand\AB@affilnote[1]{{\normalfont\textsuperscript{#1}}}
+% \makeatother
+
+%-------------------------------------------------------------------------------
+% The following information is needed for the cover page. The commands are defined
+% if you use the coverpage option in atlasdoc or use the atlascover package.
+% They are also defined if you include the atlasmetadefs package.
+%-------------------------------------------------------------------------------
+
+% List of supporting notes  (leave as null \AtlasCoverSupportingNote{} if you want to skip this option)
+\AtlasCoverSupportingNote{Support Note}{https://cds.cern.ch/record/2777971/}
+%
+% OR (the 2nd option is deprecated, especially for CONF and PUB notes)
+%
+% Supporting material TWiki page  (leave as null \AtlasCoverTwikiURL{} if you want to skip this option)
+% \AtlasCoverTwikiURL{https://twiki.cern.ch/twiki/bin/view/Atlas/WebHome}
+
+% Comment deadline
+% \AtlasCoverCommentsDeadline{DD Month 2024}
+
+% Analysis team members - contact editors should no longer be specified
+% as there is a generic email list name for the editors
+\AtlasCoverAnalysisTeam{Jose Seixas, Denis Oliveira Damazio, Chris Meyer, Werner Spolidoro Freund, Joao Victor Da Fonseca Pinto, Micael Verissimo De Araujo}
+
+% Editorial Board Members - indicate the Chair by a (chair) after his/her name
+% Give either all members at once (then they appear on one line), or separately
+\AtlasCoverEdBoardMember{Bertrand, Laforge (Paris LPNHE) }
+\AtlasCoverEdBoardMember{Fernando, Monticelli (La Plata) (chair)}
+% \AtlasCoverEdBoardMember{EdBoard~Chair~(chair)}
+% \AtlasCoverEdBoardMember{EB~Member~1}
+% \AtlasCoverEdBoardMember{EB~Member~2}
+% \AtlasCoverEdBoardMember{EB~Member~3}
+
+
+
+% Analysis team egroup
+\AtlasCoverEgroupAnalysisTeam{atlas-TRIG-2021-01-analysis-team@cern.ch}
+
+% EdBoard and conveners egroup
+\AtlasCoverEgroupEdBoard{atlas-TRIG-2021-01-edboard-conveners@cern.ch}

@@ -1,0 +1,57 @@
+\chapter{Introduction}
+
+Electrons and photons are produced in important Standard Model processes as well as in final states predicted by Beyond the Standard Model theories. 
+The ATLAS physics program relies on an efficient trigger system to record a highly signal-rich subset of all collision events produced by the Large Hadron Collider (LHC) at CERN.
+
+The ATLAS detector~\cite{PERF-2007-01} is a multipurpose particle detector. 
+The inner-detector (ID) system is immersed in a 2T solenoidal magnetic field and provides charged-particle tracking in the range $|\eta|<2.5$.  
+Three technologies are employed, with finer granularity nearer to the interaction point~\cite{PERF-2015-08,CERN-LHCC-97-016,Haywood:331064}: a Pixel Detector with 92 million channels, a Silicon Microstrip Detector (SCT) with 6.3 million channels and a Transition Radiation Detector (TRT) with 350 thousand channels. 
+The TRT offers electron identification capability within its pseudorapidity coverage ($|\eta|\leq 2$) via the detection of transition-radiation photons generated at the interface between the radiator material and detection straws. 
+Track reconstruction requires CPU-intensive calculations due to the combinatorial complexity of the algorithm when associating hits with tracks~\cite{PERF-2015-08}. 
+In 2016, it was the second most-demanding reconstruction algorithm in the High Level Trigger (HLT).
+Lead/liquid-argon (LAr) sampling calorimeters provide electromagnetic (EM) energy measurements with fine-grained granularity~\cite{LARG-2009-01,larg_tdr}. 
+A steel/scintillator-tile hadron calorimeter covers the central pseudorapidity range ($|\eta|< 1.7$)~\cite{TCAL-2017-01,tile_tdr}. 
+The endcap and forward regions are instrumented with LAr calorimeters for both the EM and hadronic energy measurements up to $|\eta|< 4.9$. 
+The muon spectrometer surrounds the calorimeters and is based on three large superconducting air-core toroidal magnets with eight coils each.  
+The muon spectrometer includes a system of precision chambers for tracking and fast detectors for triggering. 
+
+A hierarchical two-level trigger system is used to select events of interest produced by the collisions~\cite{aad2020performance}. 
+The first-level (L1) trigger, implemented with custom-made electronics located on the detector, utilises coarser granularity from the calorimeters to reduce the event rate from 40 MHz bunch crossing rate to below 100 kHz. 
+The L1 level also defines regions-of-interest (RoIs)~\cite{CERN-LHCC-2017-020}, which have calorimeter clusters with high transverse energy. The RoIs accepted by L1 are processed by the HLT, based on algorithms implemented in software. It operates from a large farm and should reduce the number of events written to disk to an average rate about 1 kHz. During the LHC Run 2 (2015–2018), the ATLAS trigger system operated with approximately 1,500 individual event selections, which specified the physics signatures and selection algorithms used for the data-taking, and the allocated event rate and bandwidth.
+
+For electron selection, the \hlt{} is split into two stages: a fast but efficient computation followed by a precise processing, which employs offline inspired algorithms that are adapted to the harsh conditions of the trigger system. The inner tracking detector (ID)~\cite{PERF-2007-01} is a complementary source of discriminant information, but it requires higher processing resources given its much denser readout structure.  Therefore, as a way to achieve lower latency for electron triggering, early discrimination evaluates only calorimetry information in each stage.
+
+
+In order to explore the full potential of the ATLAS calorimeter system to detect electrons and photons and measure their properties, considerable effort has been placed in deriving and improving descriptive and discriminating variables\footnote{Terminology somewhat varies within ATLAS literature, also possible to encounter other terms such as ``quantities'' or ``features'' with the same meaning.}. Physics and calorimetry expertise,
+combined with in-depth knowledge of the ATLAS design, allow to summarize the tridimensional information of an electromagnetic shower development in a limited set of 
+variables\footnote{offline electron identification uses seven calorimetry-only
+variables~\cite{aaboud2019electron}}. These variables are mostly defined in
+terms of elementary operations, multiplication and sums, using a group of cells provided by the calorimeter
+design, and conceived to explore distinct aspects of the shower development. In the context of~\cite{aad2020performance}, the high-dimensional input space, typically of 1,000 cells in a RoI, is compacted into seven comprehensive descriptive variables, which compose a highly discriminant input space to distinguish e/$\gamma$ from jets.
+
+Here, the representation of calorimeter information formatted into the sum of energy deposited in concentric rings around the track of the incoming particle is discussed. In such a way, the approximate conical development of the shower is exploited to compact the information while maintaining the physics interpretation of its lateral and longitudinal information. The representation of the shower through these rings sums was proposed for usage at hadron collider detectors prior~\cite{1992_spacal_rings} to the specific design of ATLAS.
+It was conceived to reduce efforts in handling analogue signals and, as a result, it is suitable to be employed as input space in early trigger stages, where discriminant variables are derived through simple operations.
+
+
+Having represented the shower development through such concentric ring sums,  artificial neural networks (ANN) are employed for hypothesis testing.  ANNs are well-known universal models ~\cite{haykin_2008} that provide a multivariate approach for handling the joint information in the input space through fast computations and exploiting nonlinear correlations in data~\cite{Duda}. Specifically, due to shower development nature and the calorimeter structure, the nearby ring sums are not statistically independent. Consequently, approximate inference approaches neglecting their dependencies can result in significant efficiency loss. This is the particular case of the electron benchmark methods constructed using a cut-based approach or a likelihood discriminant assuming statistical independence of the different variables, despite the correlations that exist among cells.  Hence, a neural network approach based on the ring sums (\rnn{} algorithm) provides a computationally fast and powerful method for exploring calorimetric signatures and the corresponding correlations between input variables. 
+%Actually, stringent online requirements have been considered essential in the \rnn{} design since its original formulation~\cite{1995_seixas_ringer}, and it has been maintained along the years even without a corresponding offline version.
+
+%The \rnn{} was developed for electrons as a way to achieve early discrimination evaluate based only on calorimetric information. It was implemented in the fast step of the HLT, which is going to be described later. Since the early work~\cite{1995_seixas_ringer}, the \rnn{} was proposed and has been pursued as an alternative to the cut-based approach, which relies on the standard shower shape variables (see Section~\ref{ssec:std_variables}).
+
+
+%The preparation for data taking in 2017 revealed that the considerable increase in the number of inelastic collisions per bunch-cross would require dealing with excessive strain of CPU resources in the trigger system~\cite{ATL-DAQ-PUB-2018-002}, which would impact reduced efficiency for a number of analyses. Particularly, it was more likely for target  signals to overlap in the detector due to pile-up effect, hence deteriorating the identification efficiency. Thus, for allowing a more efficient selection under such conditions, the \rnn{} became the baseline selection of events containing at least one isolated electron above \SI{15}{\GeV} in proton-proton collisions.
+
+This paper describes the proposal and performance analyses of the \rnn{}
+algorithm used in the fast processing phase of the \hlt{}, which became the baseline selection of events containing at least one isolated electron above \SI{15}{\GeV} in proton-proton collisions. A review
+of other relevant background information is available in
+Section~\ref{sec:context}, in particular: the electron
+trigger and related information. Full details of its identification procedure are
+in Section~\ref{sec:neuralringer}, including the training and tuning strategies and also contemplating the improvements achieved for 2018 operation. Section~\ref{sec:operation} describes to the efficiency measurements, describing the expected and experimental results. A comparison of the \rnn with
+the cut-based triggers using statistical methods through the offline perspective
+is performed in Section~\ref{sec:off_ana}. Finally, the conclusions and prospects 
+are derived in Section~\ref{sec:conclusion}.
+
+
+
+
+

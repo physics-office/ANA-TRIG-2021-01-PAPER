@@ -1,0 +1,44 @@
+
+\begin{table}[hbt]\footnotesize
+\centering
+\caption{Names, symbols and definitions of the figures of merit employed. More
+  than one symbol and names can be found in different fields for some figures.
+  We will use the names indiscriminately throughout the text, however the
+  symbols to be employed in the text are prefixed with a `$\rightarrow$' symbol.
+  The unary operator $|\cdot|$ represents the cardinality of a
+set.\label{tab:figures_of_merit}}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{cllc}
+\hline
+\hline
+&  Symbol & Name & Definition \\
+\hline
+$\rightarrow$ & $\pd{}$ & Probability of detection &
+\multirow{3}{*}{$\cfrac{|\mathcal{O}_{\text{e}|\text{e}}|}{|\Theta_{\text{e}}|}$}
+\\
+& \multirow{2}{*}{$\text{P}_{\text{e}|\text{e}}$} & Electron efficiency & \\
+& & Signal Efficiency & \\
+\hline
+$\rightarrow$ & $\mathbf{\pf{}}$ & Probability of false alarm &
+\multirow{3}{*}{$\cfrac{|\mathcal{O}_{\text{e}|\text{b}}|}{|\Theta_{\text{b}}|}$}
+\\
+& \multirow{2}{*}{$\text{P}_{\text{e}|\text{b}}$} & Fake rate & \\
+& & Background efficiency & \\
+\hline
+& \spindex{} & Sum-product index & $\left(
+  \left(\pd{}\cdot(1-\pf{})\right)^{\nicefrac{1}{2}} \cdot
+  \left(\pd{}+(1-\pf{})\right) \cdot \nicefrac{1}{2}
+  \right)^{\nicefrac{1}{2}}$ 
+  \\
+\hline
+& MSE & Mean squared error & $\sum\limits_{x\in\Theta} \cfrac{\left(\hat{y} -
+y\right)^2}{|\Theta|}$ \\
+\hline
+\hline
+\end{tabular}
+}
+\end{table}
+
+
+
+

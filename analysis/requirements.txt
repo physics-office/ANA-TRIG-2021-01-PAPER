@@ -1,0 +1,5 @@
+expand_folders
+jupyter
+prettytable
+tqdm
+#rootplotlib @ git+https://gitlab.cern.ch/atlas-trig-egamma/ringer/rootplotlib.git

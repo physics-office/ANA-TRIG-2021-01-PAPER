@@ -1,0 +1,11 @@
+# Exception list for TRIG-2021-01 with reference date 2024-07-11
+# Exception list for paper ID TRIG-2021-01 on date July 11th, 2024 at 7:18pm
+
+Excluded Gordon Howard
+Excluded Guest Daniel
+Excluded Khramov Evgeniy
+Excluded Sapronov Andrey
+Excluded Soukharev Andrey
+Excluded Trischuk William
+
+% Created with Glance <Atlas.Glance@cern.ch>

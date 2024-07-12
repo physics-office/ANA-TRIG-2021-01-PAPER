@@ -1,0 +1,62 @@
+
+%%% Coloring the comment as blue
+\newcommand\mycommfont[1]{\footnotesize\ttfamily\textcolor{blue}{#1}}
+\SetCommentSty{mycommfont}
+\SetKwInput{KwInput}{Input}                % Set the Input
+\SetKwInput{KwOutput}{Output}              % set the Output
+
+
+
+\begin{algorithm}[H]
+
+    \DontPrintSemicolon
+  
+    \KwInput{Rings, $E_{T}$, $\eta$, \avgmu{}, models, thresholds}
+    \KwOutput{Decision}
+
+    Decision = False \tcc{Set the decision to false by default}
+ 
+    \tcc{model is an object with attributes etmin, etmax, etamin, etamax and hold the neural network struture.}
+
+    \For{model \leftarrow models}
+    {
+        % If et cluster is 
+        \If{$E_{T}$ of the cluster is within the $E_{T}$ upper and lower bounds of the model}{
+        {
+            \If{$|\eta|$ of the cluster is within the $\eta$ upper and lower bounds of the model }
+            {
+                output $\leftarrow$ Propagate the normalized rings through the neural network and get the output}                
+                \textbf{break}
+            }
+
+        }
+    }
+  
+
+    \For{parameters \leftarrow thresholds}
+    {
+        \If{$E_{T}$ of the cluster is within the $E_{T}$ upper and lower bounds of the parameters }
+        {
+            \If{$|\eta|$ of the cluster is within the $\eta$ upper and lower bounds of the parameters}
+            {
+                \tcc{get the slope and offset parameters to apply the pileup corretion}
+                \alpha $\leftarrow$ get slope from parameters
+
+                \beta $\leftarrow$ get offset from parameters
+
+                \tcc{check if output is higher than the threshold}
+                \If {output > $\alpha\avgmu{}+\beta$}
+                {
+                    Decision = True \tcc{approve the event.}     
+                }
+
+                \textbf{break}
+            }
+        }
+    }
+
+
+
+\caption{Ringer ensemble algorithm}
+\label{alg:ensemble}
+\end{algorithm}

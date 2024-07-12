@@ -1,0 +1,136 @@
+\chapter{Conclusion}\label{sec:conclusion}
+%-------------------------------------------------------------------------------
+
+
+% Comparison with standard strategies
+The \rnn{} brings an innovative design for electron selection based on
+calorimetry information. By alleviating the implicit requirement of conceiving
+variables to exploit individual properties of the particle interaction process, it introduces 
+more general variables exploiting the process natural symmetries. With the
+ambition to comply with specific trigger system demands, the feature extraction
+of concentric ring energy sums provides an efficient description, which is quickly derived
+through simple operations. Neural network models are employed for exploiting
+nonlinear correlations between rings. The algorithm shows
+high agreement with the offline and previous trigger selection methods, both based
+on a maximum likelihood approach. It is one of the motivations whose culminated
+in the employment of an ensemble of specialist models per regions of
+pseudorapidity and transverse energy. Likewise, the \rnn{} algorithm preserves
+better the signal efficiency with respect to pile-up with respect to the
+previous cut-based strategy it replaced.
+
+
+In the second half of 2017, the \rnn{} algorithm replaced such a cut-based strategy
+in the \fastcalo{} decision step and became the baseline algorithm
+for triggering events containing electrons above \SI{15}{\GeV}, as part of the ATLAS online system CPU reduction campaign. The \fastcalo{} selection is crucial for CPU demands, as a more
+efficient algorithm allows to avoid heavier computations in the
+subsequent steps.  It was the first time a neural network method was employed as
+a baseline selection algorithm for event selection in the ATLAS trigger system.
+During 2017 operation, based on neural networks trained with simulated data,
+reduction factors of 13 in the \fastcalo{} and of 2 in
+the \hlt{} fake rates were achieved with respect to the offline likelihood, while
+keeping high electron efficiency when the \rnn{} was set to operate in a
+configuration similar to lowest energy-threshold unprescaled single electron
+trigger. It resulted in a reduction of \SI{60}{\%} in the CPU demands for this particular trigger, when it was set to operate alone. On the trigger system level,
+estimated results on reprocessed data show a reduction of \SI{8}{\%} in the CPU
+demands of \egamma{} triggers. For 2018, the \rnn{} was trained with collision
+data resulting in an estimated additional reduction 35\% for the
+mentioned trigger with respect to 2017.
+
+\begin{comment}
+    
+
+
+% Quadrant and agreement analysis
+The \rnn{} was also studied through the offline likelihood perspective 
+to bring additional insights on its behavior. By
+taking advantage of the low dimensionality, low correlation and high
+interpretability power of the variables employed in the likelihood, we derived
+the profiles of the disjoint decision cases of the 2017 duplicate trigger pair.
+The choice for the duplicated pair considered the typical scenario employed for
+analysis with the setup that would maximize the disagreement between both
+configurations: with and without the \rnn{}. The proposed quadrant analysis
+allowed to observe high agreement between both triggers with slight shifts
+towards the signal region in the disagreement profiles of some calorimetry-based
+variables. By checking the agreement between the trigger pair for the derivation
+of the likelihood pdfs, the alteration using the full 2017 data was much lower
+than estimated statistical fluctuations. The residuals were found to be bounded
+by \SI{0.2}{$\sigma$} for all variables. When considering only the
+disagreement profiles, homogeneity hypothesis at a \SI{5}{\%} level was not
+rejected for the calorimetry variables, except for \reta{} and \rhad{} despite
+using the most populated regions. For these variables, a shift towards signal
+region was also observed. Hence, the \rnn{} had negligible impact in the
+sensitive variables employed for physics analysis and in the offline selection
+operation.
+
+Finally, the presented results show that it is possible to tighten the requirements for online operation while still resulting in high agreement with the offline
+selection. More generally, it demonstrates that designing a solution from scratch using the application specificities can provide new effective
+strategies. We hope that it can serve as motivation for other developments in
+HEP, particularly when considering the trigger applications.
+
+\section{Outlook}
+
+
+Preliminary evaluations have shown the potential of the \rnn{} algorithm for
+triggering on electrons with $\et<\SI{15}{\GeV}$. This is particularly motivating given that triggers in this kinematic region are very
+CPU demanding. Additionally, they have high output rate and are usually
+prescaled, thus \rnn{} might also allow to collect additional data for those
+triggers. For the beginning of Run 3 (2022), \rnn{} has been extended to all triggers below $\et<\SI{15}{\GeV}$ where a reduction of at least half of the fake rate in \fastcalo was observed.
+
+
+Photons are other physics objects that may be triggered using the Ringer approach. Triggers combining photons to other physics objects are quite CPU demanding, thus motivating studies to evaluate whether additional Ringer developments will contribute to increased performance.
+When considering pure photon triggers, the ring sums with linear classifiers can be investigated in order to keep the analysis strategies employed in channels as $\text{H}\rightarrow Z\gamma$. Another possibility for those triggers is to
+employ the \rnn{} for increasing the trigger efficiency. A possible
+setup is to duplicate the photon triggers so that the \rnn{} recovers
+interesting events.  In this hybrid menu configuration, the standard trigger
+would be available for those analyses so that they may benefit from high
+interpretability and customization, whereas the \rnn{} trigger might be employed
+for those analyses demanding more statistics. It is expected that this
+configuration will demand minor additional resources but may allow higher
+statistical significance of the results of physics analysis.
+
+
+% No-had
+Another interesting possibility is to employ the \rnn{} accessing only
+electromagnetic information for triggers resulting in high readout rate from
+hadronic calorimeter cells. The particular setup may even consider employing a
+two step decision on the \fastcalo{}, a preliminary one based solely on
+electromagnetic information followed by the full \rnn{} decision.
+
+
+
+
+% Boosted configurations
+Physics beyond the Standard Model is getting more attention at the LHC and is expected to be part of the main focus in the data-taking phases to
+come. We aim at improving the \rnn{} algorithm to comprise boosted
+configurations, particularly limiting the effect of other contributions at
+the edge of the feature extraction window, which can result from these physics
+processes. Additionally, the \rnn{} is being evaluated as an alternative
+strategy for a long-lived particle analysis. %($\text{a}\rightarrow\text{H}(\gamma\gamma)Z(l^+l^-)$).
+
+
+Nevertheless, we expect that the \rnn{} efficiency can still be improved. Indeed, the feature extraction
+algorithm has many limitations as being initially proposed for online
+operation, but a more complex algorithm accounting for the cell sizes can
+provide more precise information, which, eventually, can be helpful for the
+selection task. Shower asymmetries may be captured if extracting ring segments,
+i.e.\@ quarter rings delimited by $\eta\times\phi$ axis. Complementary
+discriminant information may be obtained by fusing the ring sums with the shower shape variables,
+which is under investigation. Deep learning models can be exploited instead of
+single hidden-layer MLPs, in order to achieve better suited decision boundaries,
+specially considering models designed to exploit the sequential structure
+presented by the rings.
+
+
+% Calibration
+The shower description by ring sums goes beyond capturing discriminant
+information and may be used for calibration of the energy of electrons and
+photons. While preliminary results with ring sums are motivating, we expect the aforementioned
+improvements in the ring description to be exceptionally important for
+calibration.
+
+% Offline developments
+The \rnn{} software has been extended to the offline framework. Currently,
+the offline ring description is available for all electrons with $\et>\SI{14}{\GeV}$. This is an on-going activity.
+
+
+\end{comment}
