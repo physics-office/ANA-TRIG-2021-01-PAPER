@@ -29,11 +29,6 @@
 %  paper=a4|letter       Set paper size to A4 (default) or letter.
 
 
-
-
-
-
-
 \usepackage[utf8]{inputenc}
 \usepackage{textcomp} % solve issues of missing unicode chars
 \usepackage{caption}
@@ -60,7 +55,7 @@
 \usepackage[linesnumbered,ruled,vlined]{algorithm2e}
 \usepackage{multirow}
 \usepackage{comment}
-
+\usepackage{subcaption}
 
 
 
@@ -121,6 +116,26 @@
 %-------------------------------------------------------------------------------
 % Content
 %-------------------------------------------------------------------------------
+
+
+
+%-------------------------------------------------------------------------------
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{4}
+%-------------------------------------------------------------------------------
+% Get old font commands back
+%-------------------------------------------------------------------------------
+\makeatletter
+%\DeclareOldFontCommand{\rm}{\normalfont\rmfamily}{\mathrm}
+%\DeclareOldFontCommand{\sf}{\normalfont\sffamily}{\mathsf}
+%\DeclareOldFontCommand{\tt}{\normalfont\ttfamily}{\mathtt}
+%\DeclareOldFontCommand{\bf}{\normalfont\bfseries}{\mathbf}
+\DeclareOldFontCommand{\it}{\normalfont\itshape}{\mathit}
+%\DeclareOldFontCommand{\sl}{\normalfont\slshape}{\@nomath\sl}
+%\DeclareOldFontCommand{\sc}{\normalfont\scshape}{\@nomath\sc}
+\makeatother
+
+
 \begin{document}
 
 \maketitle
