@@ -1,0 +1,186 @@
+\newcommand*{\tap}{{tag-and-probe}\xspace}
+\newcommand*{\tnp}{{tag-and-probe}\xspace}
+\newcommand*{\TnP}{{Tag-and-Probe}\xspace}
+\newcommand*{\Tnp}{{Tag-and-probe}\xspace}
+\def\egamma{{EGamma}}
+
+% Kinematics
+\newcommand*{\Et}{\texorpdfstring{{\ensuremath{E_{\mathrm T}}}}{eT}\xspace}
+\renewcommand*{\et}{\Et}
+\let\etaa=\eta
+\def\eta{\ensuremath{\etaa}\xspace}%
+\let\phii=\phi
+\def\phi{\ensuremath{\phii}\xspace}%
+\newcommand*{\mT}{\ensuremath{m_{\mathrm T}}\xspace}
+\newcommand*{\avg}[1]{\ensuremath{\langle #1 \rangle}\xspace} % for e.g. <\mu>
+\newcommand*{\avgmu}{\ensuremath{\avg{\mu}}\xspace}
+
+\newcommand*{\detadphi}{\ensuremath{\Delta\etaa\times\Delta\phii}\xspace}
+\newcommand*{\etaphi}{\ensuremath{\etaa\times\phii}\xspace}
+\newcommand*{\eteta}{\ensuremath{\et\times\abseta}\xspace}
+
+% Methods
+\newcommand*{\Zmass}{\ensuremath{Z_{\mathrm mass}}\xspace}
+\newcommand*{\Ziso}{\ensuremath{Z_{\mathrm iso}}\xspace}
+\newcommand*{\mee}{\ensuremath{m_{ee}}\xspace}
+\newcommand*{\Jpsicut}{\ensuremath{\Jpsi ~\tau}-cut\xspace}
+\newcommand*{\Jpsifit}{\ensuremath{\Jpsi ~\tau}-fit\xspace}
+\newcommand*{\cut}{\ensuremath{\tau}-cut\xspace}
+\newcommand*{\fit}{\ensuremath{\tau}-fit\xspace}
+
+\newcommand*{\kde}{\text{KDE}\xspace}
+\newcommand*{\dkl}{\ensuremath{\text{D}_{\text{KL}}}\xspace}
+
+% Processes
+\newcommand*{\veto}{\ensuremath{\neg}\xspace}
+\newcommand*{\Jee}{\ensuremath{\Jpsi \rightarrow ee}\xspace}
+\newcommand*{\Zee}{\ensuremath{Z \rightarrow ee}\xspace}
+\newcommand*{\Wenu}{\ensuremath{W \rightarrow e\nu}\xspace}
+\newcommand*{\BeeK}{\ensuremath{\text{B} \rightarrow eeK}\xspace}
+\newcommand*{\psis}{\ensuremath{\psi(2S)}\xspace}
+
+% Efficiency variables
+
+\newcommand{\epsemclus}{\ensuremath{\epsilon_\mathrm{EMclus}}\xspace}
+\newcommand{\epsreco}{\ensuremath{\epsilon_\mathrm{reco}}\xspace}
+\newcommand{\epsid}{\ensuremath{\epsilon_\mathrm{id}}\xspace}
+\newcommand{\epstrig}{\ensuremath{\epsilon_\mathrm{trig}}\xspace}
+\newcommand{\epsiso}{\ensuremath{\epsilon_\mathrm{iso}}\xspace}
+\newcommand{\epstot}{\ensuremath{\epsilon_\mathrm{total}}\xspace}
+\newcommand{\epscharge}{\ensuremath{\epsilon_\mathrm{charge}}\xspace}
+\newcommand{\epsloose}{\ensuremath{\epsilon_\mathrm{loose}}\xspace}
+\newcommand{\epsmedium}{\ensuremath{\epsilon_\mathrm{medium}}\xspace}
+\newcommand{\epstight}{\ensuremath{\epsilon_\mathrm{tight}}\xspace}
+\newcommand{\Nreco}{\ensuremath{N_\mathrm{reco}}\xspace}
+\newcommand{\Nclus}{\ensuremath{N_\mathrm{cluster}}\xspace}
+\newcommand{\Nid}{\ensuremath{N_\mathrm{id}}\xspace}
+\newcommand{\Niso}{\ensuremath{N_\mathrm{iso}}\xspace}
+\newcommand{\Ntrig}{\ensuremath{N_\mathrm{trig}}\xspace}
+\newcommand{\Nall}{\ensuremath{N_\mathrm{all}}\xspace}
+
+% Electron ID 
+\newcommand*{\Loose}{\text{Loose}\xspace}
+\newcommand*{\VeryLoose}{\text{VeryLoose}\xspace}
+\newcommand*{\Medium}{\text{Medium}\xspace}
+\newcommand*{\Tight}{\text{Tight}\xspace}
+%
+\newcommand*{\loose}{\text{Loose}\xspace}
+\newcommand*{\veryLoose}{\text{VeryLoose}\xspace}
+\newcommand*{\vloose}{\veryLoose}
+\newcommand*{\medium}{\text{Medium}\xspace}
+\newcommand*{\tight}{\text{Tight}\xspace}
+%
+\newcommand*{\LooseLH}{\text{Loose}\xspace}
+\newcommand*{\VeryLooseLH}{\text{VeryLoose}\xspace}
+\newcommand*{\MediumLH}{\text{Medium}\xspace}
+\newcommand*{\TightLH}{\text{Tight}\xspace}
+%
+\newcommand*{\looseLH}{\text{Loose}\xspace}
+\newcommand*{\verylooseLH}{\text{Veryloose}\xspace}
+\newcommand*{\mediumLH}{\text{Medium}\xspace}
+\newcommand*{\tightLH}{\text{Tight}\xspace}
+%
+\newcommand*{\looseCB}{\text{Loose}\xspace}
+\newcommand*{\mediumCB}{\text{Medium}\xspace}
+\newcommand*{\tightCB}{\text{Tight}\xspace}
+
+\newcommand*{\wstot}{\ensuremath{w_\text{stot}}\xspace}
+\newcommand*{\deltaemax}{\ensuremath{E_\text{ratio}}\xspace}
+\newcommand*{\reta}{\ensuremath{R_\etaa}\xspace}
+\newcommand*{\weta}{\ensuremath{w_{\eta,2}}\xspace}
+\newcommand*{\wsIII}{\ensuremath{w_\text{s3}}\xspace}
+\newcommand*{\rhad}{\ensuremath{R_\text{had}}\xspace}
+\newcommand*{\rhadone}{\ensuremath{R_\text{had1}}\xspace}
+\newcommand*{\eoverp}{\ensuremath{E/p}\xspace}
+\newcommand*{\deltaeta}{\ensuremath{\Delta\eta_1}\xspace}
+\newcommand*{\deltaphi}{\ensuremath{\Delta\phi_2}\xspace}
+\newcommand*{\dOSig}{\ensuremath{\sigma(d_0)}\xspace}
+\newcommand*{\TRTHighTHitsRatio}{\ensuremath{F_\text{HT}}\xspace}
+%\newcommand*{\TRTPID}{TRTPID\xspace}
+\newcommand*{\TRTPID}{eProbabilityHT\xspace}
+\newcommand*{\TR}{\ensuremath{F_\text{HT}}\xspace}
+\newcommand*{\fI}{\ensuremath{f_1}\xspace}
+\newcommand*{\fIII}{\ensuremath{f_3}\xspace}
+\newcommand*{\fside}{\ensuremath{F_\text{side}}\xspace}
+\newcommand*{\trackdO}{\ensuremath{d_0}\xspace}
+\newcommand*{\trackzO}{\ensuremath{z_0}\xspace}
+\newcommand*{\deltaEmax}{\ensuremath{E_\text{ratio}}\xspace}
+\newcommand*{\eratio}{\deltaEmax}
+\newcommand*{\ptconept}{\ensuremath{p_T\text{cone20}/p_T}\xspace}
+\newcommand*{\rphi}{\ensuremath{R_\phii }\xspace}
+\newcommand*{\deltapoverp}{\ensuremath{\Delta p/p}\xspace}
+\newcommand*{\deltaphires}{\ensuremath{\Delta\phi_\text{res}}\xspace}
+\newcommand*{\nvtx}{\ensuremath{n_\text{vtx}}\xspace}
+\newcommand*{\nvtxmax}{\ensuremath{n_\text{vtx,max}}\xspace}
+\newcommand*{\dOSignificance}{\ensuremath{\trackdO/\dOSig}}
+\newcommand*{\deltaZOsinTheta}{\ensuremath{|\Delta z_{0}\sin\theta|}\xspace}
+\newcommand*{\deltaZO}{\ensuremath{\Delta z_{0}}\xspace}
+
+% Electron Isolation
+
+\newcommand*{\ETcone}{\ensuremath{\ET^\mathrm{cone 0.2}}\xspace}
+\newcommand*{\ETconeX}{\ensuremath{\ET^\mathrm{cone 0.4}}\xspace}
+\newcommand*{\pTcone}{\ensuremath{\pT^\mathrm{varcone 0.2}}\xspace}
+\newcommand*{\eff}{\ensuremath{\varepsilon}\xspace}
+\newcommand{\ETraw}{\ensuremath{E_\mathrm{T, raw}^\mathrm{isol}}\xspace}
+\newcommand{\ETcore}{\ensuremath{E_\mathrm{T, core}}\xspace}
+\newcommand{\ETleak}{\ensuremath{E_\mathrm{T, leakage}}\xspace}
+% \newcommand{\ETpile}{\ensuremath{E_\mathrm{T, pile-up}}\xspace}
+\newcommand{\ETpile}{\ensuremath{E_\textrm{T,pile-up}}\xspace}
+\newcommand{\ETcorr}{\ensuremath{E_\mathrm{T, cone}^\mathrm{isol}}\xspace}
+\newcommand{\pTvar}{\ensuremath{p_\mathrm{T, var}^\mathrm{isol}}\xspace}
+\newcommand{\pTiso}{\ensuremath{p_\mathrm{T}^\mathrm{isol}}\xspace}
+
+% Dataset
+\newcommand*{\lumi}{{37.1}\xspace}
+
+% ATLAS default coordinate footnote
+\newcommand{\AtlasCoordFootnote}{%
+ATLAS uses a right-handed coordinate system with its origin at the nominal interaction point (IP) in the centre of the detector and the $z$-axis along the beam pipe. The $x$-axis points from the IP to the centre of the LHC ring,
+and the $y$-axis points upwards. Cylindrical coordinates $(r,\phi)$ are used in the transverse plane, $\phi$ being the azimuthal angle around the $z$-axis.
+The pseudorapidity is defined in terms of the polar angle $\theta$ as $\etaa = -\ln \tan(\theta/2)$.
+Angular distance is measured in units of $\Delta R \equiv \sqrt{(\Delta\etaa)^{2} + (\Delta\phii)^{2}}$.}
+
+% Calorimeter
+\newcommand*{\ecal}{\text{ECAL}\xspace}
+\newcommand*{\hcal}{\text{HCAL}\xspace}
+\newcommand*{\tilecal}{\text{TileCal}\xspace}
+\newcommand*{\itc}{\text{ITC}\xspace}
+
+\newcommand*{\presamplerb}{\text{PreSamplerB}\xspace}
+\newcommand*{\presamplere}{\text{PreSamplerE}\xspace}
+\newcommand*{\emb}[1]{\text{EMB#1}\xspace}
+\newcommand*{\emec}[1]{\text{EMEC#1}\xspace}
+\newcommand*{\tilebar}[1]{\text{TileBar#1}\xspace}
+\newcommand*{\tileext}[1]{\text{TileExt#1}\xspace}
+\newcommand*{\tilegap}[1]{\text{TileGap#1}\xspace}
+\newcommand*{\hec}[1]{\text{HEC#1}\xspace}
+
+\newcommand*{\ps}{\text{PS}\xspace}
+\newcommand*{\emi}{\text{EM1}\xspace}
+\newcommand*{\emii}{\text{EM2}\xspace}
+\newcommand*{\emiii}{\text{EM3}\xspace}
+\newcommand*{\hadi}{\text{HAD1}\xspace}
+\newcommand*{\hadii}{\text{HAD2}\xspace}
+\newcommand*{\hadiii}{\text{HAD3}\xspace}
+\newcommand*{\emI}{\emi}
+\newcommand*{\emII}{\emii}
+\newcommand*{\emIII}{\emiii}
+\newcommand*{\hadI}{\hadi}
+\newcommand*{\hadII}{\hadii}
+\newcommand*{\hadIII}{\hadiii}
+
+\newcommand*{\lIcalo}{\text{L1Calo}\xspace}
+\newcommand*{\licalo}{\lIcalo}
+\newcommand*{\fastcalo}{\text{FastCalo}\xspace}
+\newcommand*{\fastelectron}{\text{FastElectron}\xspace}
+\newcommand*{\hltcalo}{\text{HLTCalo}\xspace}
+\newcommand*{\hlt}{\text{HLT}\xspace}
+
+%\newcommand*{\rnn}{\text{NeuralRinger}\xspace}
+\newcommand*{\rnn}{\text{Neural-Ringer}\xspace}
+
+\newcommand*{\pd}{\ensuremath{\text{P}_\text{D}}\xspace}
+\newcommand*{\pf}{\ensuremath{\text{P}_\text{F}}\xspace}
+\newcommand*{\spindex}{\ensuremath{\text{SP}}\xspace}
+\newcommand*{\spmax}{\ensuremath{\spindex_{\text{max}}}\xspace}
