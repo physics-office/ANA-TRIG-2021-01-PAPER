@@ -1,4 +1,4 @@
-\chapter{The \rnn{} Algorithm}%
+\section{The \rnn{} Algorithm}%
 \label{sec:neuralringer}
 
 This section describes the \rnn{} concepts and the resulting algorithm used for Run~2
@@ -7,30 +7,30 @@ operation. Considerations about data sets (Section~\ref{ssec:dataset}) and the \
 from real ATLAS data start this section. Section~\ref{ssec:rnn_for_online_and_eletrons} refers to the
 decisions made for the \rnn{} development in order to optimize its contributions in saving processing resources. Aiming at better exploring the discriminative
 power of ring sums for electron triggers (Section~\ref{ssec:ringer_id}),
-an ensemble of neural network is employed. Its training procedure and how trigger decisions are made are covered in Section~\ref{sec:tuning}.
+an ensemble of neural networks is employed. Its training procedure and how trigger decisions are made are covered in Section~\ref{sec:tuning}.
 
 
 
 
-\section{Data sets and Event Selection}%
+\subsection{Data sets and Event Selection}%
 \label{ssec:dataset}
 
-The training procedure for 2017 operation was built with samples of 2015 simulated $Z\rightarrow ee$ decay selected by the $Z\rightarrow ee$ \TnP method (see Section~\ref{ssec:tnp}). Background samples for electron processes were simulated. A filter was applied to enrich the sample in electron backgrounds selecting events which have particles produced in the hard scatter with a summed transverse energy exceeding 17 GeV in a region of $\Delta\eta\times\Delta\phi=0.1\times0.1$. During 2016 data taking, the peak pile-up reached was 40 interactions per bunch crossing.
-Here, both simulated data include a pile-up of 60 interactions in average, per bunch crossing, which had never been seen before in collision data until the end of 2017, when the observed pile-up exceeded 60 of peek. Recently, in 2023, the highest level of pile-up observed exceeded 60 of peak again.
+The training procedure for 2017 operation was built with samples of 2015 simulated $Z\rightarrow ee$ decay selected by the $Z\rightarrow ee$ \TnP method (see Section~\ref{ssec:tnp}). Background samples for electron processes were simulated. A filter was applied to enrich the sample in electron backgrounds selecting events which have particles produced in the hard scatter with a summed transverse energy exceeding 17 GeV in a region of $\Delta\eta\times\Delta\phi=0.1\times0.1$. During 2016 data taking, the pile-up reached was 40 interactions per bunch crossing.
+Here, both simulated data include a pile-up of 60 interactions in average, per bunch crossing, which had never been seen before in collision data until the end of 2017, when the observed peek pile-up exceeded 60. Recently, in 2023, the highest level of pile-up observed exceeded 60 again.
 
-After the training stage, thresholds on the discriminating score must be determined for selection of good electron candidates. To set the correct value without causing any inefficiency in the end of the HLT in data, the full \textit{pp} collision data set recorded by ATLAS in 2016 with LHC operating at a centre-of-mass energy of $\sqrt{s}=13 \text{TeV}$ during of Run 2 was used. The electrons were selected by $Z\rightarrow ee$ \TnP method and the offline tight criteria. For background, objects rejected by the $Z\rightarrow ee$ \TnP method, that does not belong to any tag-probe electron pair, and reproved by the loosest offline available criteria were used. For the 2018 operation, the purely data-driven strategy was used, selecting events from the 2017 recorded data to train the models and adjust all thresholds.
+After the training stage, thresholds on the discriminating score must be determined for selection of good electron candidates. To set the correct value without causing any inefficiency in the end of the HLT in data, the full \textit{pp} collision data set recorded by ATLAS in 2016 with LHC operating at a centre-of-mass energy of $\sqrt{s}=13\text{ TeV}$ during of Run 2 was used. The electrons were selected by $Z\rightarrow ee$ \TnP method and the offline tight criteria. For background, objects rejected by the $Z\rightarrow ee$ \TnP method, that does not belong to any tag-probe electron pair, and reproved by the loosest offline available criteria were used. For the 2018 operation, the purely data-driven strategy was used, selecting events from the 2017 recorded data to train the models and adjust all thresholds.
 
 The tuning and analysis performed on data recorded have their quality ensured by the data quality procedure. 
 
 %\input{sections/context/tables/event_selection}
 
 
-\subsection{\TnP Method}\label{ssec:tnp}
+\subsubsection{\TnP Method}\label{ssec:tnp}
 
-The \tnp{} method~\cite{PERF-2016-01} selects, from a known resonances such as \Zee{}, an unbiased sample of `probe' electrons by using strict selection requirements on the second `tag' object. For electrons coming from $Z$ boson decay, the selection of two EM objects with an invariant mass around the $Z$ mass with opposite charge is enough to get a pure sample of electrons as soon as one of those objects is tagged as a well-identified electron. The remaining object can then be assumed to be an electron with a very high underlying purity. This object can then be used as a probe to test the electron trigger efficiency. The selection of the tag particle is done according to offline analysis criteria to make sure that the trigger selection introduces a minimal loss of those events at the final physics analysis level~\cite{aaboud2019electron}. A single electron is used as a tag to select the event at the trigger level, allowing the second electron to be used as a probe to measure trigger algorithm performance~\cite{aad2020performance}.
+The \tnp{} method~\cite{PERF-2016-01} selects, from known resonances such as \Zee{}, an unbiased sample of `probe' electrons by using strict selection requirements on the second `tag' object. For electrons coming from $Z$ boson decay, the selection of two EM objects with an invariant mass around the $Z$ mass with opposite charge is enough to get a pure sample of electrons as soon as one of those objects is tagged as a well-identified electron. The remaining object can then be assumed to be an electron with a very high underlying purity. This object can then be used as a probe to test the electron trigger efficiency. The selection of the tag particle is done according to offline analysis criteria to make sure that the trigger selection introduces a minimal loss of those events at the final physics analysis level~\cite{aaboud2019electron}. A single electron is used as a tag to select the event at the trigger level, allowing the second electron to be used as a probe to measure trigger algorithm performance~\cite{aad2020performance}.
 
 
-\section{Algorithm Development}\label{ssec:rnn_for_online_and_eletrons}
+\subsection{Algorithm Development}\label{ssec:rnn_for_online_and_eletrons}
 
 The \rnn{} algorithm was initially proposed for electron-jet discrimination. 
 During Run 2, both online and offline versions
@@ -41,11 +41,11 @@ are currently evaluated and developed using \Zee{} \tnp{} samples
 follows.
 
 
-\subsection{Building the Rings}\label{top:algorithm}
+\subsubsection{Building the Rings}\label{top:algorithm}
 
 The ATLAS calorimeters comprise rectangular cells in the
 \etaphi plane for different layers in depth\footnote{Except for the forward calorimeters.}.
-As the algorithm was considered to operate online, approximations were made. Specifically, the rectangular structure of the rings follows the detector construction and the ring coverage is bounded to the RoI area. In addition, granularity changes from the cell sizes from different regions of the detector are neglected\footnote{The $\eta$ granularity used by the algorithm at EM1 layer is 0.003 for the entire eta range defined ($|\eta|<2.5$). However, the detector construction at this layer cover the region of $0<|\eta|<2.37$ and has different granularities in $\eta$: starts with 0.003 at $0<|\eta|<1.81$; 0.004 at $1.81<|\eta|<2.01$ and 0.006 at $2.01<|\eta|<2.37$.} in order to employ a grid-like algorithm.
+As the algorithm was considered to operate online, approximations were made. Specifically, the rectangular rings are constructed to match the grid layout of the calorimeter cells and the ring coverage is bounded by the RoI area. In addition, granularity changes from the cell sizes from different regions of the detector are neglected\footnote{The $\eta$ granularity used by the algorithm at EM1 layer is 0.003 for the entire eta range defined ($|\eta|<2.5$). However, the detector construction at this layer cover the region of $0<|\eta|<2.37$ and has different granularities in $\eta$: starts with 0.003 at $0<|\eta|<1.81$; 0.004 at $1.81<|\eta|<2.01$ and 0.006 at $2.01<|\eta|<2.37$.} in order to employ a grid-like algorithm.
 
 
 Here, the algorithm RoI covers a
@@ -72,7 +72,7 @@ R_{n,l} = \left\{c_{n,l} \mid n = \left\lfloor \max{\left(
 \noindent where (analogous to $\phi$ when suitable): $\eta_{i,l}$
 and $\eta_{hot,l}$ are respectively the $c_{i,l}$ and $c_{hot,l}$
 cells position in $\eta$; $h_{\eta,l}$ is the $l^{th}$ layer cell size in $\eta$; $\Theta_{RoI,l}$ is the set of cells
-in the $l^{th}$ layer which are within the Ringer RoI.
+in the $l^{th}$ layer which are within the Ringer RoI and $\lfloor \cdot \rceil$ is the \textit{round} function.
 \tablename~\ref{tab:ring_alg_parameters} shows the number of rings computed at each layer and the respective granularity.
 
 \input{sections/03_ringer/tables/granularity}
@@ -84,7 +84,7 @@ The sum of the transverse energies of cells $c_{n,l}$ in the ring $R_{n,l}$ form
 They are ordered outwards and from the
 innermost layer of the calorimeter and provide the ring-shaped information 
 of the RoI. Figure~\ref{fig:building_rings_b} shows the ring-shaped mean profile differences between electrons and jet particles. The implementation of this algorithm is simple and the actual code
-was optimized to be fast (see Section~\ref{top:fastcalo_cpu}). 
+was optimized to be fast (see Section~\ref{ssec:cpu_reduction}). 
 
 
 
@@ -123,7 +123,7 @@ was optimized to be fast (see Section~\ref{top:fastcalo_cpu}).
 
 
 
-\section{Ring Sums as Discriminant Variables}\label{ssec:ringer_id}
+\subsection{Ring Sums as Discriminant Variables}\label{ssec:ringer_id}
 
 % TODO Add references of sucesfull aplications of NNs in other fields.
 
@@ -133,9 +133,8 @@ was optimized to be fast (see Section~\ref{top:fastcalo_cpu}).
 %variables. Although the use of univariate cuts or a likelihood model could be
 %considered, they have limitations to explore concisely the statistical
 %dependency.
-To deal with the high redundancy between the ring variables, the benefit from machine learning processing was explored to unveil the latent discriminating space, as in
-the case of a Multi-layer Perceptron (MLP) neural-networks~\cite{haykin_2008},
-employed for Run~2 operation. 
+To deal with the high redundancy between the ring variables, the benefit from machine learning processing was explored to unveil the latent discriminating space, with the specific case of Multi-layer Perceptron (MLP)~\cite{haykin_2008} being employed for Run 2 operation
+
 %MLPs require a normalization preprocessing step~\cite{haykin_2008} to adjust the input dynamic range to the neuron activation function employed (Section~\ref{top:pp}). 
 An ensemble of MLPs was employed for operation by tuning and selecting
 the models for selected regions of the \eteta space (Section~\ref{top:nn_ensemble}), whose
@@ -160,14 +159,14 @@ are described in Section~\ref{sec:tuning}.
 
 %\input{sections/03_ringer/algorithms/ensemble_algorithm}
 
-\subsection{Ring Sum Normalization}\label{top:pp}
+\subsubsection{Ring Sum Normalization}\label{top:pp}
 
 The current strategy concatenates all rings in a single vector of 100
 variables. An absolute normalization using the total RoI energy, as in
 (\ref{eq:ring_norm}), is applied to normalize the variables. This procedure was
 initially proposed and examined by~\cite{1995_seixas_ringer}, as a way of
 preserving the shower energy profile in fractions of the total energy. The
-absolute term is used to avoid reflecting the values along the axis due to
+absolute value is used to avoid reflecting the values along the axis due to
 negative noise accumulation, a behavior which would impact the physics
 representation of the normalized values and require a more complex decision
 boundary:
@@ -258,9 +257,7 @@ reduction of the training time~\cite{Polikar2006}, as observed heuristically\foo
   When using NVIDIA RTX 2080Ti in tensorflow 1.14 and a minibatch size of 1024, a 
   MLP with single hidden layer, a substantial increase in the runtime (from 4 
   to 41 seconds per epoch) with respect to the ensemble version was observed.} when
-comparing the tuning time of the ensemble to a single and more complex model.
-This effect can be related to the reduction of conflicting training information,
-which can occur when a network is forced to learn several dissimilar functions
+comparing the tuning time of the ensemble to a single and more complex model. This effect can be related to the reduction of conflicting training information, which can occur when a network is forced to learn several dissimilar functions
 as distinct decision boundaries for each region~\cite{Auda1999,haykin_2008}.
 Regarding the operation, the proposed ensemble only requires the choice of a
 single model to operate instead of a more often committee machine approaches
@@ -272,7 +269,7 @@ approach, in terms of processing speed.
 
 
 
-\section{Training and Decision Making}%
+\subsection{Training and Decision Making}%
 \label{sec:tuning}
 
 In this section, the details of the training and decision making tuning procedures
@@ -293,7 +290,7 @@ and final \hlt likelihood models~\cite{aaboud2019electron}.
 
 
 
-\subsection{Figures of Merit}\label{ssec:fom}
+\subsubsection{Figures of Merit}\label{ssec:fom}
 
 
 
@@ -301,7 +298,7 @@ The sets $\Theta_{\text{e}}$ and $\Theta_{\text{b}}$ of real and fake electrons,
 
 
 
-The convenient explicitly definition of the figures of merit are detailed in~\tablename~\ref{tab:figures_of_merit}.
+The convenient explicit definition of the figures of merit are detailed in~\tablename~\ref{tab:figures_of_merit}.
 It is possible to tune $\mathcal{C}$ to result in a proper working point, (i.e. a targeted value of \pd{} or \pf{}) by adjusting $\tau$. All possible working points of $\mathcal{C}$ are defined by the Receiver Operation Characteristic (ROC) curve~\cite{van_trees_part1}, but keeping fixed the electron detection probabilities, or signal efficiencies, with respect to the previous baseline cut-based trigger. The \spindex{}~\cite{dos2006neural} index, the square root of the product of the geometric and arithmetic averages of the efficiencies for the signal and background categories, collapses when efficiencies on either signal or background events decrease significantly. Thus, the SP index provides a unidimensional space that allows tuning $\mathcal{C}$ for obtaining high efficiency in a balanced manner for both classes, which is given by choosing the $\spmax{}:=\max(\spindex{})$ working point.
 
 
@@ -314,7 +311,7 @@ It is possible to tune $\mathcal{C}$ to result in a proper working point, (i.e. 
 
 
 
-\subsection{Training Procedure For 2017 Data}\label{ssec:2017}
+\subsubsection{Training Procedure For 2017 Data}\label{ssec:2017}
 
 The training procedure and decision making processes are the same for all phase
 space regions and a summary of the process is provided in
@@ -334,7 +331,7 @@ the dataset in k disjoint subsets, each model tested with the $i$th subset and
 trained with the remaining ones. The dataset stratification follows the
 empirical order of the event selection, in order to allow straightforward job
 parallelization, i.e.\ random permutation is not employed. The possible effect
-of a temporal structure in data was neglected as 2017 training procedure
+of a temporal structure in data was neglected as the 2017 training procedure
 employed simulation data.
 
 In case of similar cross-validation efficiencies when comparing standard
@@ -351,7 +348,7 @@ is employed as higher generalization power can be expected.
 For each cross-validation sort and working point, 100 networks, initiated
 as from~\cite{initnw}, are optimized by back-propagating the Mean Squared Error (MSE) through the RPROP
 algorithm~\cite{rprop} with all parameters set to default,
-except for the parameter that regards the multiplication factor of the weight update rate when gradient direction remains the same as of the previous iteration. It was 
+except for the parameter that regards the multiplication factor of the weight update rate when the gradient direction remains the same as of the previous iteration. It was 
 %except for
 %$\eta^+=1.1$ (default is 1.2). This particular
 %parameter regards the multiplication factor of the weight update rate when
@@ -359,7 +356,7 @@ except for the parameter that regards the multiplication factor of the weight up
 observed during Run~1 that this modification improved convergence speed. RPROP
 is an adaptive gradient descendent technique that is resilient to the size of
 the derivatives. This repeated model initialization aims at
-avoiding poor sub-optimal solutions due to usage of gradient-based algorithms.
+avoiding poor sub-optimal solutions due to the usage of gradient-based algorithms.
 %as RPROP in optimisation problems involving non-convex and complex function.
 For each training procedure, only three models out of the 100 are retained: two
 for retrieving the best efficiency when fixing the \pd{} or \pf{} to the
@@ -376,7 +373,7 @@ electron chains in the HLT (see Section~\ref{ssec:egamma_trigger}).
 Here, the first training strategy considered only four regions in $|\eta|$ ($0.0\rightarrow 0.8\rightarrow1.37\rightarrow2.5$).
 Except for few exceptions, the models in the ensemble employed 5 neurons in the 
 hidden layer.  Thus, for 2017 operation, 
-\rnn{} operation did not result on
+\rnn{} operation did not result in
 successive contained sets for more stringent working points, i.e. an electron
 candidate accepted by \medium{} is not necessarily also accepted by \loose{}
 working point. %To the best of our knowledge, this does not impact the \hlt{}
@@ -417,14 +414,14 @@ not used (Section~\ref{ssec:egamma_trigger}).
   \begin{subfigure}[c]{.48\textwidth}
   \centering
   \includegraphics[width=\textwidth]{sections/03_ringer/figures/th2_signal_tight_cutbased_et3_eta1_with_tansig.pdf}
-  \caption{Neural output with hyperbolic tangent w.r.t pileup.}
+  \caption{Neural output with hyperbolic tangent w.r.t pile-up.}
   \label{fig:nn_correction_with_tansig}
   \end{subfigure}
   \hfill
   \begin{subfigure}[c]{.48\textwidth}
   \centering
   \includegraphics[width=\textwidth]{sections/03_ringer/figures/th2_signal_tight_cutbased_et3_eta1_without_tansig.pdf}
-  \caption{Neural output with linear activation w.r.t pileup.}
+  \caption{Neural output with linear activation w.r.t pile-up.}
   \label{fig:nn_correction_without_tansig}
   \end{subfigure}
   %\hfill
@@ -483,7 +480,7 @@ the lack of strip cells in this region and demanded a specific discriminant requ
 %efficiencies near triggers without \rnn{}.
 
 \FloatBarrier
-\subsection{Training Procedure For 2018 Data}\label{ssec:2018}
+\subsubsection{Training Procedure For 2018 Data}\label{ssec:2018}
 
 Most of the procedure was kept unchanged for 2018, with modifications shown in
 Table~\ref{tab:2018_ringer}.
@@ -496,15 +493,14 @@ To simplify the training strategy, the selection of three models for each traini
 
 Likewise, MLPs with 5 to 10 units in the hidden layer were tuned, as most models did not require
 more than 10 units in 2017. With a larger time span for entering operation, we
-added MLPs specialized in the region where detected a change in the ring
+added MLPs specialized in the region where a change was detected in the ring
 profiles before 2017 operation between $2.37<\abseta<2.47$, resulting in the operation of
 \SI{25}{MLPs}. The correction limit was set to
 $\avgmu{}=100$~collisions or, in other words, removed for 2018 operation, given
 that the data-taking 
-conditions never reached such a large pileup level. By
+conditions never reached such a large pile-up level. By
 %conditions did not extrapolate this value. By 
-assuming a linear efficiency extrapolation,%\footnote{It is worth noticing that the linear
-%fit is reasonably good for the Run~2 conditions.}
+assuming a linear efficiency extrapolation, 
 it was observed that most phase space regions did not reach background efficiencies
 larger than \SI{15}{\%} before arriving at $\avgmu=100$~collisions, while same
 signal efficiencies were maintained.

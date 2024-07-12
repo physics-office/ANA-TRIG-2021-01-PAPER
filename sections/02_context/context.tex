@@ -1,12 +1,12 @@
 % \section{\rnn Development Context}\label{sec:context}
-\chapter{Online Electron Selection}\label{sec:context}
+\section{Online Electron Selection}\label{sec:context}
 
 
 The optimal performance in the measurement of electrons and photons plays a fundamental role in searches for new particles, in the measurement of Standard Model cross-sections, and in the precise measurement of the properties of fundamental particles such as the Higgs~\cite{HIGG-2012-27,HIGG-2016-33} and W bosons. Here, the electron-based selection is described. As the \rnn{} algorithm was developed for calorimeter signal processing, Section~\ref{sec:atlas_trigger} describes the calorimeter systems in detail with an emphasis on the standard calorimeter variables for electron identification and introduces the ring sums as alternative features envisaging a compact detailed description for shower developments in the calorimeter. The electron triggers are described in Section~\ref{ssec:egamma_trigger}.
 
 
 
-\section{Calorimetry Based Identification}\label{sec:atlas_trigger}
+\subsection{Calorimetry Based Identification}\label{sec:atlas_trigger}
 
 The calorimeter system covers the pseudorapidity\footnote{ATLAS uses a right-handed coordinate system with its origin at the nominal interaction point (IP) in the centre of the detector and the z-axis along the beam-pipe. The x-axis points from the IP to the centre of the LHC ring, and the y-axis points upward. Cylindrical coordinates (r, $\phi$) are used in the transverse plane, \phi being the azimuthal angle around the beam-pipe. The pseudorapidity is defined in terms of the polar angle $\theta$ as \eta = -$\ln{tan(\theta/2)}$. The angular distance $\Delta R$ is defined as $\Delta R = \sqrt{(\Delta\eta)^{2} + (\Delta\phi)^{2}}$ . Transverse momenta and energies are defined as $pT = p\sin\theta$ and $E_{T}$ = $E\sin\theta$, respectively.} range \(|\eta| < 4.9\)~\cite{PERF-2007-01}. Within the region \(|\eta|< 3.2\),
 electromagnetic calorimetry is provided by barrel and endcap high-granularity
@@ -26,7 +26,7 @@ estimate signal losses~\cite{cal_tdr}.
 The electromagnetic and hadronic calorimeters are segmented~\cite{PERF-2007-01}\footnote{The two
 central layers in HCAL end-cap are summed to result in a single measurement.} longitudinally (i.e. in depth) into three sampling layers each. Each sampling layer has its own lateral ($\eta\times\phi$) granularity, for detailed information. Besides granularity, the amount of material in front of the detector in each sampling layer also varies with \abseta, leading to variations in the expected lateral and longitudinal profiles. Additionally, the expected
 profile is also dependent on the physics object total energy. In the EM calorimeter, most of the EM shower energy is collected in the second layer, while the third layer provides measurements
-of energy deposited in the shower tails. 
+of energy deposited in the shower tails. Although, it is important to mention that the first EM layer (EM1) plays an important role in the discrimination of electrons against $\pi^0$. 
 
 The hadronic calorimeters, which surround the EM detectors,
 provide additional discrimination power through further energy measurements of
@@ -39,7 +39,7 @@ dependent on the shower development position~\cite{Wigmans2017}.
 
 
 
-\subsection{Physics-Inspired Calorimetric Electron Identification}\label{ssec:std_variables}
+\subsubsection{Physics-Inspired Calorimetric Electron Identification}\label{ssec:std_variables}
 
 The specificities of the real electron and background interaction processes with
 detector instrumentation can be used to construct meaningful and discriminative physics variables. Except for the hardware-based calorimeter trigger
@@ -54,9 +54,9 @@ triggers applies thresholds on the three most discriminating variables discussed
 \input{sections/02_context/tables/electron_quantities}
 
   
-The standard electron identification variables are based on in-depth
+The standard electron identification variables are based on an in-depth
 understanding of the signatures left by signal and background.  As a result, information in specific regions of the experiment
-are fused together using a set of a few variables (i.e. 3 variables for describing the shower shape in the second EM layer). The objective is to reduce the dimensionality of the problem and to compose a highly discriminant input space to apply a set of rectangular cuts, which provides a simple yet powerful selection mechanism. The use of variables providing similar information is discouraged, once they usually do not aggregate with
+are fused together using a set of a few variables (i.e. 3 variables for describing the shower shape in the second EM layer). The objective is to reduce the dimensionality of the problem and to compose a highly discriminant input space to apply a set of rectangular cuts, which provides a simple yet powerful selection mechanism. The use of variables providing similar information is discouraged, as they usually do not aggregate with
 discriminating power and make analysis more
 complex~\cite{aaboud2019electron}.
 
@@ -70,7 +70,7 @@ In the end of the LHC Run~1~\cite{PERF-2016-01}, the strategy for offline electr
 
 \newpage
 
-\subsection{\rnn{} Based Electron Identification}%\label{ssec:rings_concept}
+\subsubsection{\rnn{} Based Electron Identification}%\label{ssec:rings_concept}
 
 At each calorimeter sampling layer, the energy deposition of an incoming particle is extracted by building concentric rings of cells (\figurename~\ref{fig:calo_rings}), or simply ``rings''. All rings in the \ecal sampling layers are
 centered around their most energetic cell, a reasonable
@@ -81,12 +81,12 @@ operation. Focusing on EM objects, rings are built using as axis center the posi
 \begin{figure}[h!t]
 	\centering
 	\begin{center}
-		\begin{subfigure}[c]{0.8\textwidth}
+		\begin{subfigure}[c]{.95\textwidth}
 			\centering
 			\includegraphics[width=\textwidth]{sections/02_context/figures/ATLAS_EM_Layers_v5.pdf}
 			\caption{Eletromagnetic calorimeter cells within the ringer reconstruction window.}
 		\end{subfigure} \\
-		\begin{subfigure}[c]{0.8\textwidth}
+		\begin{subfigure}[c]{.95\textwidth}
 			\centering
 			\includegraphics[width=\textwidth]{sections/02_context/figures/ATLAS_HAD_Layers_v5.pdf}
 			\caption{Hadronic calorimeter cells within the ringer reconstruction window.}
@@ -102,7 +102,7 @@ operation. Focusing on EM objects, rings are built using as axis center the posi
 
 The ring building process covers the whole $0.4\times0.4$ (\etaphi axis) RoI
 seeded by \licalo, resulting in 100 rings in total across all calorimeter layers.
-Thereby, a dimensionality reduction is provided by compacting
+Thereby, a dimensionality reduction is provided by compacting the
 typical input space dimensionality of approximately 1000--1200 cells per ROI into
 the above-mentioned 100 rings through the usage of EM shower physics knowledge: the rings can keep a complete description of the symmetric lateral and
 longitudinal information. However, the algorithm only approximates this concept
@@ -123,7 +123,7 @@ Second, one should also notice
 that the rings do not use the same sensors more than once for each variable.
 This is not strictly true for the shower shapes, although it is fairly unusual.
 In contrast, pattern recognition through modern machine learning
-algorithms~\cite{Engelbrecht2007,Goodfellow2016}, as convolution
+algorithms~\cite{Engelbrecht2007,Goodfellow2016}, such as convolution
 neural-networks~\cite{Gu2018}, build variables processing several times
 the same sensors. Additionally, as providing dimension reduction and keeping the physics interpretation of the shower development, the shower shapes are also suited to bringing insights through uni-variate analysis carried out on each
 single dimension composing the input space.
@@ -137,7 +137,7 @@ Thus, an alternative ring-based trigger strategy was developed and the shower sh
 
 
 
-\section{Electron Triggers}\label{ssec:egamma_trigger}
+\subsection{Electron Triggers}\label{ssec:egamma_trigger}
 
 
 Electron triggers~\cite{aad2020performance} begin with
@@ -186,7 +186,7 @@ This processing step is followed by the fast track reconstruction
 
 % http://acode-browser1.usatlas.bnl.gov/lxr/source/aa/Trigger/TrigHypothesis/TrigEgammaHypo/python/TrigL2CaloHypoCutDefs.py
 
-A precise electron candidate energy is later computed (\hltcalo). Final HLT selection makes use of a likelihood
+A precise electron candidate energy is later computed (\hltcalo). The final HLT selection makes use of a likelihood
 approach~\cite{ATL-COM-PHYS-2017-1012,ATLAS-PERF-2017-01-002}, based on the estimation of marginal probability density function (pdf) for the discriminating variables ($\vec{x}$) given in Table~\ref{tab:IDcuts}. The discriminant value is computed by:
 
 
@@ -214,14 +214,14 @@ approach~\cite{ATL-COM-PHYS-2017-1012,ATLAS-PERF-2017-01-002}, based on the esti
 easier computation of the proper threshold~\cite{aaboud2019electron}.},
 the decision is made by comparing $d_{\mathcal{L}}$ with a
 threshold linearly corrected for \avgmu{}, in order to mitigate electron trigger
-efficiency loss due to pile-up the effect caused by proton-proton collisions in the same or surrounding bunch crossings. The mean number of interactions per crossing (\avgmu{}) corresponds to the
+efficiency loss due to pile-up, the effect caused by proton-proton collisions in the same or surrounding bunch crossings. The mean number of interactions per crossing \avgmu{} corresponds to the
 mean of the Poisson distribution of the number of interactions per crossing calculated for each colliding bunch pair. In addition, some other requirements are
-applied on specific variables (e.g., number of hits at Pixel detector, $\Delta\eta$, $\trackdO$, $\deltapoverp$) to improve the final decision~\cite{aaboud2019electron}
+applied to specific variables (e.g., number of hits at Pixel detector, $\Delta\eta$, $\trackdO$, $\deltapoverp$) to improve the final decision~\cite{aaboud2019electron}.
 
 To account for detector response evolution with
 respect to \Et\footnote{Projection of the energy ($E$) in the transverse plane,
 computed by $E\cdot\sin(\theta)$ or $E\cdot\cosh(\eta)$.} and
-$\eta$, both the Kernel Density Estimation (KDE) and discriminant requirements are computed in delimited ($\eta\times E_{T})$
+$\eta$, both the Kernel Density Estimation (KDE) of marginal pdfs  and discriminant requirements are computed in delimited ($\eta\times E_{T})$
 regions in this plane (boundaries defined in the Section~\ref{top:nn_ensemble}).
 A finer-grained grid in \Et is employed for the derivation of the discriminant
 requirements to obtain a relatively smooth efficiency transition. Additionally,
@@ -233,7 +233,7 @@ Finally, the discriminant requirements are optimized for four working points
 which can be used to define triggers targeting different combinations of the desired output rate
 and required efficiency. The \tight{} operating point prioritizes the purity of
 collected electron candidates and demands lower output rate.
-The \loose{} and the \vloose{} operating point emphasize potential electron observations, resulting in higher output rate with substantial lower purity. 
+The \loose{} and the \vloose{} operating point emphasize potential electron observations, resulting in higher output rate with substantially lower purity. 
 On the other hand, the \medium{} working point allows an intermediate
 operation between both strategies. Each operating point also leads to
 variation in the physics composition (e.g., light- and heavy-flavour, photon

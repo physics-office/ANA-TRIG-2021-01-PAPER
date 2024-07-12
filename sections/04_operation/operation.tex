@@ -1,4 +1,4 @@
-\chapter{Online Deployment}%
+\section{Online Deployment}%
 \label{sec:operation}
 
 
@@ -12,7 +12,7 @@ Section~\ref{ssec:dataset}\footnote{For efficiency measurements in this section,
 	working point.}. Firstly, the detail of the algorithm cycle used during Run~2
 (Section~\ref{ssec:run2_rnn_cycle}) is presented.
 
-\section{Run~2 \rnn{} Cycle}\label{ssec:run2_rnn_cycle}
+\subsection{Run~2 \rnn{} Cycle}\label{ssec:run2_rnn_cycle}
 
 During the Run 2, the actual \rnn{} implementation
 %The \rnn cycle 
@@ -37,7 +37,7 @@ can be partitioned into four chronological stages:
     2017 efficiency is presented in Section~\ref{ssec:2018_ringer_operation}.
 \end{enumerate}
 
-\section{2017 Operation}\label{ssec:2017_ringer_operation}
+\subsection{2017 Operation}\label{ssec:2017_ringer_operation}
 
 % FIXME Don't forget that there are some of these plots that were already
 % approved.
@@ -48,7 +48,7 @@ monitoring purposes after the first technical stop (TS1). During the monitoring 
 operation of both triggers was observed in terms of signal efficiency using the
 integrated luminosity along the period, as shown in
 Figure~\ref{fig:e28_triggers}. The trigger
-turn-on curves exhibit similar profile. In $\eta$, \rnn{} shows a reasonably symmetric
+turn-on curves exhibit similar profile. In $\eta$, the \rnn{} shows a reasonably symmetric
 profile with respect to positive and negative $\eta$. In addition, a difference of about half to one percentage point may be observed in $\eta$ because of the transition region between the endcap and barrel. Besides
 aforementioned points, overall efficiency fluctuations are smaller than a few
 per-mille. Although a slightly more prominent efficiency loss with respect to
@@ -66,7 +66,7 @@ without the \rnn{} algorithm. %The loosest likelihood trigger with 17 GeV energy
 
 \begin{figure}[h!tb]
   \begin{center}
-  \begin{subfigure}[c]{.59\textwidth}
+  \begin{subfigure}[c]{.58\textwidth}
   \centering
   \includegraphics[width=\textwidth]{sections/04_operation/figures/efficiencies/eff_EGAM1_e28_ringer_and_noringer_2017_after_ts1_HLT_et.pdf}
   \caption{}%
@@ -74,20 +74,20 @@ without the \rnn{} algorithm. %The loosest likelihood trigger with 17 GeV energy
   \end{subfigure} \\
   %\hfill
   %\hspace{0.01\textwidth}
-  \begin{subfigure}[c]{.59\textwidth}
+  \begin{subfigure}[c]{.58\textwidth}
   \centering
   \includegraphics[width=\textwidth]{sections/04_operation/figures/efficiencies/eff_EGAM1_e28_ringer_and_noringer_2017_after_ts1_HLT_eta.pdf}
   \caption{}%
   %\label{fig:e28_comp_eta}
   \end{subfigure} \\
-  \begin{subfigure}[c]{.59\textwidth}
+  \begin{subfigure}[c]{.58\textwidth}
   \centering
   \includegraphics[width=\textwidth]{sections/04_operation/figures/efficiencies/eff_EGAM1_e28_ringer_and_noringer_2017_after_ts1_HLT_mu.pdf}
   \caption{}%
   \label{fig:e28_comp_mu}
   \end{subfigure}
   \caption{\label{fig:e28_triggers}HLT electron efficiency as a function of \et{}
-    (a), \eta{} (b) and \avgmu{} (c) for the duplicated single electron isolated trigger
+    (a), \eta{} (b) and \avgmu{} (c) for the single electron isolated trigger
     requiring $\et{} > \SI{28}{\GeV}$ and \tight{} selection with and without the
     \rnn{} algorithm. Efficiencies are measured employing 2017 data collected.}
   \end{center}
@@ -95,28 +95,25 @@ without the \rnn{} algorithm. %The loosest likelihood trigger with 17 GeV energy
   
 \begin{figure}[h!tb]
   \begin{center}
-  \begin{subfigure}[c]{.59\textwidth}
+  \begin{subfigure}[c]{.58\textwidth}
   \centering
   \includegraphics[width=\textwidth]{sections/04_operation/figures/efficiencies/eff_EGAM1_e17_e26_e60_2017_before_and_after_ts1_et.pdf}
   \caption{}%
   \end{subfigure}\\
   %\hfill
   %\hspace{0.01\textwidth}
-  \begin{subfigure}[c]{.59\textwidth}
+  \begin{subfigure}[c]{.58\textwidth}
   \centering
   \includegraphics[width=\textwidth]{sections/04_operation/figures/efficiencies/eff_EGAM1_e17_e26_e60_2017_before_and_after_ts1_eta.pdf}
   \caption{}%
   \end{subfigure} \\
-  \begin{subfigure}[c]{.59\textwidth}
+  \begin{subfigure}[c]{.58\textwidth}
   \centering
   \includegraphics[width=\textwidth]{sections/04_operation/figures/efficiencies/eff_EGAM1_e17_e26_e60_2017_before_and_after_ts1_mu.pdf}
   \caption{}%
   \end{subfigure}
   %\hfill
-  \caption{Efficiency of three single electron triggers as a function of
-  \et (a), \eta (b) and \avgmu (c). Open (closed) markers contain
-  the efficiency measurements on runs before (after) the first technical stop, thus referring to
-  triggers being executed without (with) the \rnn{} algorithm. For 2017 collision data, the higher \avgmu{} values were reached only after the technical stop. 
+  \caption{Efficiency of three single electron triggers as a function of \et (a), \eta (b) and \avgmu (c). Open (closed) markers contain the efficiency measurements on runs before (after) the deployment of the \rnn{}, thus referring to triggers being executed without (with) the \rnn{} algorithm. For 2017 collision data, the higher \avgmu{} values were reached only after the deployment.
   }%
   \label{fig:2017_ts1}
   \end{center}
@@ -135,7 +132,7 @@ considering the low \et{} and the end-cap regions.
 
 \begin{figure}[h!tb]
   \begin{center}
-  \begin{subfigure}[c]{.59\textwidth}
+  \begin{subfigure}[c]{.58\textwidth}
   \centering
   \includegraphics[width=\textwidth]{sections/04_operation/figures/efficiencies/eff_EGAM7_e28_ringer_and_noringer_2017_after_ts1_L2Calo_et.pdf}
   %\label{fig:e28_comp_et_fake}
@@ -143,13 +140,13 @@ considering the low \et{} and the end-cap regions.
   \end{subfigure}\\
   %\hfill
   %\hspace{0.01\textwidth}
-  \begin{subfigure}[c]{.59\textwidth}
+  \begin{subfigure}[c]{.58\textwidth}
   \centering
   \includegraphics[width=\textwidth]{sections/04_operation/figures/efficiencies/eff_EGAM7_e28_ringer_and_noringer_2017_after_ts1_L2Calo_eta.pdf}
   %\label{fig:e28_comp_eta_fake}
   \caption{}
   \end{subfigure}\\
-  \begin{subfigure}[c]{.59\textwidth}
+  \begin{subfigure}[c]{.58\textwidth}
   \centering
   \includegraphics[width=\textwidth]{sections/04_operation/figures/efficiencies/eff_EGAM7_e28_ringer_and_noringer_2017_after_ts1_L2Calo_mu.pdf}
   %\label{fig:e28_comp_mu_fake}
@@ -157,10 +154,7 @@ considering the low \et{} and the end-cap regions.
   \end{subfigure}
   %\hfill
   \caption{\label{fig:e28_triggers_fake} \fastcalo %\footnotemark{} 
-  fake electron efficiency as a function of \et (a), \eta (b) and \avgmu (c) for the
-  duplicated single electron isolated trigger requiring $\et > \SI{28}{\GeV}$ and \tight
-  selection with and without the \rnn{} algorithm. Efficiencies are measured
-  employing 2017 data collected after the first technical stop.}%
+  fake electron efficiency as a function of \et (a), \eta (b) and \avgmu (c) for the single electron isolated trigger requiring $\et > \SI{28}{\GeV}$ and \tight selection with and without the \rnn{} algorithm. Efficiencies are measured employing 2017 data collected after the \rnn algorithm deployment.}%
   
   \end{center}
 \end{figure}
@@ -181,27 +175,27 @@ the transition regions in the calorimeter. The discussion about CPU and final ra
 
 \begin{figure}[h!tb]
 \begin{center}
-\begin{subfigure}[c]{.59\textwidth}
+\begin{subfigure}[c]{.58\textwidth}
 \centering
 \includegraphics[width=\textwidth]{sections/04_operation/figures/efficiencies/eff_EGAM7_e28_ringer_and_noringer_2017_after_ts1_et.pdf}
 \caption{}
 \end{subfigure}\\
 %\hfill
 %\hspace{0.01\textwidth}
-\begin{subfigure}[c]{.59\textwidth}
+\begin{subfigure}[c]{.58\textwidth}
 \centering
 \includegraphics[width=\textwidth]{sections/04_operation/figures/efficiencies/eff_EGAM7_e28_ringer_and_noringer_2017_after_ts1_eta.pdf}
 \caption{}
 \end{subfigure} \\
-\begin{subfigure}[c]{.59\textwidth}
+\begin{subfigure}[c]{.58\textwidth}
 \centering
 \includegraphics[width=\textwidth]{sections/04_operation/figures/efficiencies/eff_EGAM7_e28_ringer_and_noringer_2017_after_ts1_mu.pdf}
 \caption{}
 \end{subfigure}
 \caption{HLT fake electron efficiency as a function of \et (a), \eta (b) and
-\avgmu (c) for the duplicated single electron isolated trigger requiring $\et >
+\avgmu (c) for the single electron isolated trigger requiring $\et >
 \SI{28}{\GeV}$ and \tight selection with and without the \rnn{} algorithm.
-Efficiencies are measured employing 2017 data collected after the first technical stop.}%
+Efficiencies are measured employing 2017 data collected after the \rnn algorithm deployment.}%
 \label{fig:e28_triggers_fake_hlt}
 \end{center}
 \end{figure}
@@ -209,7 +203,7 @@ Efficiencies are measured employing 2017 data collected after the first technica
 
 \FloatBarrier
 
-\section{2018 Operation}\label{ssec:2018_ringer_operation}
+\subsection{2018 Operation}\label{ssec:2018_ringer_operation}
 
 In 2018, the \rnn{} operated with a new tune based on collision data
 (Section~\ref{ssec:2018}). It was also the case for the final HLT
@@ -220,6 +214,6 @@ improvement of at least one percentage point in central value is observed when
 comparing both periods, resulting from a better operation in all selection
 steps, but, in particular, this is due to improvements from the likelihood tunes in the period.
 
-Despite maintaining high electron efficiency, it was observed a small reduction in fake acceptance at \fastcalo{} for some unprescaled triggers in comparison with 2017 after TS1. For the lowest-transverse energy-threshold it is observed a reduction factor by 1.19. On the other hand, for the highest-transverse energy trigger, a reduction factor by 1.69 was achieved.
+Despite maintaining high electron efficiency, a small reduction in fake acceptance was observed at the  \fastcalo{} step for some unprescaled triggers in comparison with 2017 after TS1. For the lowest-transverse energy-threshold the fake acceptance was reduced by a factor by 1.19. On the other hand, for the highest-transverse energy trigger, a reduction factor by 1.69 was achieved.
 
 

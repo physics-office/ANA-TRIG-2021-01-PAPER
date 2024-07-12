@@ -1,10 +1,10 @@
-\chapter{Introduction}
+\section{Introduction}
 
 Electrons and photons are produced in important Standard Model processes as well as in final states predicted by Beyond the Standard Model theories. 
 The ATLAS physics program relies on an efficient trigger system to record a highly signal-rich subset of all collision events produced by the Large Hadron Collider (LHC) at CERN.
 
 The ATLAS detector~\cite{PERF-2007-01} is a multipurpose particle detector. 
-The inner-detector (ID) system is immersed in a 2T solenoidal magnetic field and provides charged-particle tracking in the range $|\eta|<2.5$.  
+The inner-detector (ID) system is immersed in a axial magnetic field provided by a 2T solenoid and provides charged-particle tracking in the range $|\eta|<2.5$.  
 Three technologies are employed, with finer granularity nearer to the interaction point~\cite{PERF-2015-08,CERN-LHCC-97-016,Haywood:331064}: a Pixel Detector with 92 million channels, a Silicon Microstrip Detector (SCT) with 6.3 million channels and a Transition Radiation Detector (TRT) with 350 thousand channels. 
 The TRT offers electron identification capability within its pseudorapidity coverage ($|\eta|\leq 2$) via the detection of transition-radiation photons generated at the interface between the radiator material and detection straws. 
 Track reconstruction requires CPU-intensive calculations due to the combinatorial complexity of the algorithm when associating hits with tracks~\cite{PERF-2015-08}. 
@@ -17,9 +17,9 @@ The muon spectrometer includes a system of precision chambers for tracking and f
 
 A hierarchical two-level trigger system is used to select events of interest produced by the collisions~\cite{aad2020performance}. 
 The first-level (L1) trigger, implemented with custom-made electronics located on the detector, utilises coarser granularity from the calorimeters to reduce the event rate from 40 MHz bunch crossing rate to below 100 kHz. 
-The L1 level also defines regions-of-interest (RoIs)~\cite{CERN-LHCC-2017-020}, which have calorimeter clusters with high transverse energy. The RoIs accepted by L1 are processed by the HLT, based on algorithms implemented in software. It operates from a large farm and should reduce the number of events written to disk to an average rate about 1 kHz. During the LHC Run 2 (2015–2018), the ATLAS trigger system operated with approximately 1,500 individual event selections, which specified the physics signatures and selection algorithms used for the data-taking, and the allocated event rate and bandwidth.
+The L1 level also defines regions-of-interest (RoIs)~\cite{CERN-LHCC-2017-020}, situated around local regions with high transverse energy. The RoIs accepted by L1 are processed by the electron's and photon's HLT, based on algorithms implemented in software. The HLT operates from a large computing farm and should reduce the number of events written to disk to an average rate about 1 kHz. During the LHC Run 2 (2015–2018), the ATLAS trigger system operated with approximately 1,500 individual event selections, which specified the physics signatures and selection algorithms used for the data-taking, and the allocated event rate and bandwidth.
 
-For electron selection, the \hlt{} is split into two stages: a fast but efficient computation followed by a precise processing, which employs offline inspired algorithms that are adapted to the harsh conditions of the trigger system. The inner tracking detector (ID)~\cite{PERF-2007-01} is a complementary source of discriminant information, but it requires higher processing resources given its much denser readout structure.  Therefore, as a way to achieve lower latency for electron triggering, early discrimination evaluates only calorimetry information in each stage.
+For electron selection, the \hlt{} is split into two stages: a fast but efficient computation followed by a precise processing, which employs offline inspired algorithms that are adapted to the harsh conditions of the trigger system. The inner tracking detector (ID)~\cite{PERF-2007-01} is a rich source of discriminant information, but it requires higher processing resources given its much denser readout structure.  Therefore, as a way to achieve lower latency for electron triggering, early discrimination evaluates only calorimetry information in each stage.
 
 
 In order to explore the full potential of the ATLAS calorimeter system to detect electrons and photons and measure their properties, considerable effort has been placed in deriving and improving descriptive and discriminating variables\footnote{Terminology somewhat varies within ATLAS literature, also possible to encounter other terms such as ``quantities'' or ``features'' with the same meaning.}. Physics and calorimetry expertise,
