@@ -15,12 +15,15 @@
 
 % Abstract - % directly after { is important for correct indentation
 \AtlasAbstract{%
-The Neural-Ringer is an ensemble of neural networks operating the selection of electrons in the High Level Trigger (HLT) of the ATLAS experiment. In the second half of 2017, the Neural-Ringer was selecting electrons above 15 GeV, as part of an effort to reduce CPU usage and to comply with more stringent data taking conditions. 
 
-The ensemble is built from Multi-Layer Perceptron (MLP) models tuned for different regions on pseudo-rapidity and
-transverse energy bins, in order to minimize trigger performance impacts from both detector response and shower development energy dependencies. Here, for each possible candidate, the most appropriate one is selected to take the decision. The MLPs are fed from calorimetry information formatted into energy sums of concentric rings built around the particle
-axis. This paper describes the Neural-Ringer algorithm, its operation efficiency and the results from the analyses done for its characterization. Using this algorithm results in a 60~\% decrease in CPU demands for the lowest-threshold unprescaled single-electron trigger, while maintaining electron efficiency nearly unchanged. The analysis results show an overall CPU saving of 8~\%, when considering the
-demands of all electron and photon triggers. This increase of performance results from a higher jet background rejection from previous cut-based selection algorithm.
+Electron trigger identification is a crucial input to many ATLAS physics analysis. To cope with the increase of peak LHC luminosity from 2017 to 2018, and a similar increase in the number of interactions per beam-crossing to about 60, trigger algorithms and selections were optimised to control the rates while retaining a high efficiency for physics analyses. 
+In the second half of 2017, the Neural-Ringer algorithm, which is a set of Multi-Layer Perception (MLP) models, replaced such a cut-based strategy in the FastCalo decision step and became the baseline algorithm for triggering events containing electrons above 15 GeV, as part of the ATLAS online system CPU reduction campaign. 
+It was the first time a neural network method was employed as a baseline selection algorithm for event selection in the ATLAS trigger system
+which results in a higher background early rejection strategy, at least 13 times with respect to the cut-based, while maintaining electron efficiency nearly unchanged.
+
+
+
+
 }
 
 % Author - this does not work with revtex (add it after \begin{document})
@@ -57,8 +60,8 @@ demands of all electron and photon triggers. This increase of performance result
 % \HepDataRecord{ZZZZZZZZ}
 
 % Submission journal and final reference
-%\AtlasJournal{JINST}
-\AtlasJournal{IEEE transactions on nuclear science}
+\AtlasJournal{JINST}
+%\AtlasJournal{IEEE transactions on nuclear science}
 % \AtlasJournalRef{\PLB 789 (2023) 123}
 % \AtlasDOI{}
 
@@ -95,7 +98,7 @@ demands of all electron and photon triggers. This increase of performance result
 % \AtlasCoverTwikiURL{https://twiki.cern.ch/twiki/bin/view/Atlas/WebHome}
 
 % Comment deadline
-\AtlasCoverCommentsDeadline{4 August 2024}
+\AtlasCoverCommentsDeadline{1 August 2024}
 
 % Analysis team members - contact editors should no longer be specified
 % as there is a generic email list name for the editors
