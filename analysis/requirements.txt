@@ -2,4 +2,10 @@ expand_folders
 jupyter
 prettytable
 tqdm
-#rootplotlib @ git+https://gitlab.cern.ch/atlas-trig-egamma/ringer/rootplotlib.git
+loguru
+onnx
+tensorflow
+matplotlib
+pandas
+pybeamer @ git+https://github.com/jodafons/pybeamer.git
+rootplotlib @ git+https://github.com/jodafons/rootplotlib.git
