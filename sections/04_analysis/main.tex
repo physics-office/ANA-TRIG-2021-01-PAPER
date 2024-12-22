@@ -14,36 +14,12 @@ Additionally, these variables are interesting since they compact the input space
 in a set of few variables with low correlation and high interpretability power. 
 %One should keep in mind that the \rnn{} algorithm had access only to the ring description during Run~2 operation.
 
-As indicated in Table~\ref{tab:quadrant_vs_agreement}, two analyses were performed to assess the
-trigger performance with and without \rnn{}, when applied to the tag (Agreement Analysis) and
-to the probe (Quadrant Analysis). The Tag \& Probe events have one probe electron that was not 
-used to decide the selection of that event at the trigger level.
 
+Since the Tag \& Probe events have one electron, called as probe electron that was not 
+used to decide the selection of that event at the trigger level, two analyses were performed to assess the
+trigger performance with and without \rnn{}, when the selection is applied to the tag electron (Homogeneity Tests) or
+to the probe (Quadrant Analysis). 
 
-\begin{table}[ht!]\footnotesize
-\centering
-\caption{Customized \Zee{} \tap{} selection criteria employed in the
-agreement and quadrant analyses in 2017-2018 period}.%
-\label{tab:quadrant_vs_agreement}
-\resizebox{\textwidth}{!}{%
-  \begin{tabular}{p{2cm}p{4.5cm}p{5.5cm}}
-\hline
-\hline
-\hline
-& Agreement Analysis (Section~\ref{ssec:agreement}) & Quadrant Analysis
-(Section~\ref{ssec:quadrant}) \\
-\hline
-\hline
-tag (and event) & trigger selection comparison & primary lowest unprescaled electron triggers \\
-\hline
-probe & \vloose & trigger selection comparison with offline selection fixed to
-the same trigger requirement \\
-\hline
-\hline
-\hline
-\end{tabular}
-}
-\end{table}
 
 The Quadrant Analysis allows to directly assess possible bias caused by the
 introduction of the \rnn{} by comparing the profiles for all possible disjoint
@@ -55,7 +31,7 @@ while the other rejects it.
 Although it is reasonable to expect that the shower development of the tag and
 the probe are independent from each other, and that the \rnn{} when applied to
 the tag selection cannot, in principle, alter the profile of the probes besides
-changing the number of \tnp{} pairs. Such evaluation of any possible systematic effect caused by the introduction of the \rnn{} in the extraction of the likelihood PDFs, employed for offline and final HLT selection, is performed by the Agreement Analysis.
+changing the number of \tnp{} pairs. Such evaluation of any possible systematic effect caused by the introduction of the \rnn{} in the extraction of the likelihood PDFs, employed for offline and final HLT selection, is performed by the Homogeneity Tests.
 
 
 
@@ -75,24 +51,25 @@ trigger selection performance using \tight{} requirement for the duplicated trig
 
 \subsubsection{Results}\label{top:quadrant_results}
 
-
-
-The Quadrant Analysis starts with the variable \reta{} for being one of the best electron-jet discriminant variables employed in the likelihood
-algorithm~\cite{aaboud2019electron}. 
-
-
+The Quadrant Analysis was performed on the variables ($R_{\eta}$, $R_{\phi}$, $E_{ratio}$ and $R_{had}$) used in the likelihood~\cite{aaboud2019electron} selection and have the best discrimination power between electrons and jets. 
 
 As shown in Figure~\ref{fig:quadrant_calo_variables_30GeV_eta}, the disagreement is small and bounded for most cases at the 1\% level for the coverage of all calorimetry variables. 
-This behavior is also observed for \et{} slices. 
+This behavior is also observed for \et{} regions. 
 One should note that the working points of both triggers are not exactly the same, although the \rnn{} aims at keeping the same signal efficiency as the cut-based strategy and was operating as desired.  
 %Thus, much of the differences reflect this difficulty. 
 In other words, 
 %One should note that the integral of the single trigger cases is related to the limitation in the precision of setting the working point of both triggers to be exactly the same. In other words, 
 the difference in height of the blue and red profiles in Figure~\ref{fig:quadrant_calo_variables_30GeV_eta} is mainly due to the small differences in efficiencies between the two triggers.
-From the operation, it was realized that such working point matching was better in the $0.6<\abseta{}<0.8$ region. Hence, comparison between profiles is simpler to be performed there.
+Here, only the results for $0.6<|\eta|<0.8$ and $35<E_T\text{[GeV]}<40$ are shown, since these results are more representative of the other results obtained in the rest of the regions of the $\eteta$ phase space.
+
+
+
 %Hence, comparison between profiles is simpler to be performed in the $0.6<\abseta{}<0.8$, which exhibits very similar performance.
 
-For all variables in this region, both triggers behave very similarly (see Figure~\ref{fig:quadrant_calo_variables_30GeV}), even if some slight shifts can be observed in few profiles. This is the case of \reta{} and \rphi{}, where the \rnn{} trigger is consistently collecting slightly more events in the signal region, i.e. respectively with slight tighter showers in $\eta{}$ and $\phi{}$ in the EM2. The \rnn{} trigger behavior shows an even lower effect in the \rhad{}, where tighter tails are observed, resulting in fewer electrons with 10\% to 30\% energy in EM1, 1\% to 2\% in EM3 and more than 4 GeV hadronic leakage. \eratio{} also shows a slightly bias towards collecting more events in the signal region with the \rnn{} trigger. Interestingly, a few events are accepted by the trigger with \rnn{}, when $0.5<\eratio{}<0.7$, probably due to electrons resulting from premature showers with barycenter near the edge of two strips
+For all variables in this region, both triggers behave very similarly (see Figure~\ref{fig:quadrant_calo_variables_30GeV}), even if some slight shifts can be observed in few profiles. This is the case of \reta{} and \rphi{}, where the \rnn{} trigger is consistently collecting slightly more events in the signal region, i.e. respectively with slight tighter showers in $\eta{}$ and $\phi{}$ in the EM2. The \rnn{} trigger behavior shows an even lower effect in the \rhad{}, where tighter tails are observed, resulting in fewer electrons with 10\% to 30\% energy in EM1, 1\% to 2\% in EM3 and more than 4 GeV hadronic leakage. \eratio{} also shows a slightly bias towards collecting more events in the signal region with the \rnn{} trigger. Interestingly, a few events are accepted by the trigger with \rnn{}, when $0.5<\eratio{}<0.7$, probably due to electrons resulting from premature showers with barycenter near the edge of two strips. 
+Although similar behavior is shown for the other 
+regions, the differences vary in strength in each \abseta{} region. 
+
 
 \begin{figure}[h!]
 \centering
@@ -127,7 +104,7 @@ For all variables in this region, both triggers behave very similarly (see Figur
 	Quadrant analysis plots for the main offline-reconstructed
 	calorimetry variables employed in the
 	likelihood and for the $0.6<\abseta{}<0.8$ and
-	$30<\et{}~[\text{GeV}]<35$ slices. 
+	$30<\et{}~[\text{GeV}]<35$ region. 
 	The top pad in each figure shows the raw number of observations for the four mutually exclusive cases: both with and without \rnn{}
 	triggered (black); triggered only with \rnn{} (blue); triggered only without \rnn{} (red); neither one triggered (gray). The bottom pad contains disagreement as defined in the Equation \eqref{eq:disagreement}.
 }
@@ -136,10 +113,6 @@ For all variables in this region, both triggers behave very similarly (see Figur
 %likelihood and \wstot{} for the $0.6<\abseta{}<0.8$ and
 %$30<\et{}~[\text{GeV}]<40$ slices.}%
 \end{figure}
-
-Although similar behavior is shown for the other 
-regions, the differences vary in strength in each \abseta{} region. As expected, 
-the trigger does not show a dependence on ID variables, as shown in Figure~\ref{fig:quadrant_track_variables_30GeV} for $35<\et{}~[\text{GeV}]<40$, since the only distinction between them is the electron identification model operating in the \fastcalo{}.
 
 
 \begin{comment}
@@ -166,25 +139,26 @@ likelihood for the $0.6<\abseta{}<0.8$ and $35<\et{}~[\text{GeV}]<40$ slice. The
 
 In this 
 analysis, the impact of using different triggers, \rnn{} and cut-based, on the likelihood algorithm is evaluated. This study requires a pair of duplicated triggers, composed by an $E_T > 28$ GeV isolated and Tight selection with and without the \rnn{}, operating online together. 
-This analysis is performed using \Zee{} \tnp{} collision data, which were selected with the trigger requirement set to either one of the duplicated triggers for the tag, whereas the probe selection is invariably set to the offline \vloose{} criterion. This is the exact setup employed by ATLAS to derive the offline likelihood for electrons above \SI{15}{\GeV}~\cite{aaboud2019electron}. To benefit from the full 2017 statistics, collision data collected previous to the TS1 were also employed. In case the profiles are statistically identical, then it is expected that the \rnn{} trigger does not cause any relevant alteration in the derivation of the offline likelihood pdfs.  The statistical method for profile evaluation is described in Section~\ref{top:homogeneity_method} and the results are available in Section~\ref{top:agreement_homogeneity_results}.
+This analysis is performed using \Zee{} \tnp{} collision data, which were selected with the trigger requirement set to either one of the duplicated triggers for the tag, whereas the probe selection is invariably set to the offline \vloose{} criterion. This is the exact setup employed by ATLAS to derive the offline likelihood for electrons above \SI{15}{\GeV}~\cite{aaboud2019electron}. To benefit from the full 2017 statistics, collision data collected previous to the TS1 were also employed. In case the profiles are statistically identical, then it is expected that the \rnn{} trigger does not cause any relevant alteration in the derivation of the offline likelihood pdfs.  
+%The statistical method for profile evaluation is described in Section~\ref{top:homogeneity_method} and the results are available in Section~\ref{top:agreement_homogeneity_results}.
 
 
 
 
-\subsubsection{Method}\label{top:homogeneity_method}
+%\subsubsection{Method}\label{top:homogeneity_method}
 
 
 
-The problem is approached based on homogeneity tests on histograms~\cite{homogeneity_test}, in order to check for (systematic) effects of the trigger configuration. It is based on a test originally developed by Pearson~\cite{pearson1911probability} and popularly employed in many fields beyond High Energy Physics (HEP), e.g. social sciences~\cite{wickens2014multiway} and health~\cite{ma2015homogeneity}, usually labelled as contingency or consistency tests.
+The problem is approached based on homogeneity tests on histograms~\cite{homogeneity_test}, in order to check for systematic effects of the trigger configuration. It is based on a test originally developed by Pearson~\cite{pearson1911probability} and popularly employed in many fields beyond High Energy Physics (HEP), e.g. social sciences~\cite{wickens2014multiway} and health~\cite{ma2015homogeneity}, usually labelled as contingency or consistency tests.
 
 In order to benefit from the test without having to customize it to the ATLAS particular analysis setup, the collision data was split into two
 statistically independent groups attempting to keep data taking conditions as
 similar as possible by successively taking data to each group from small
 consecutive periods. 
 
-By comparing the p-values of the two groups, it is possible to evaluate how the different configuration affects the likelihood of the profiles to be drawn from the same distribution. If the p-values\footnote{The p-value here is defined by: $P-value \approx f(x, k) = \frac{1}{2^{k/2}\Gamma(k/2)}x^{k/2 -1}e^{-x/2}$} have negligible fluctuations with respect to the values obtained by the tests comparing the same triggers, then the systematic effect in the profiles is negligible with respect to half\footnote{Once each group is using nearly half of the integrated luminosity.} of the statistics available.
+The p-value, or probability value, is a measure used in statistical hypothesis testing to determine the significance of your results. It represents the probability of obtaining an observed result, or something more extreme if the null hypothesis (which states that there is no effect or no difference) is true. By comparing the p-values of the two groups, it is possible to evaluate how the different configurations affect the likelihood of the profiles being drawn from the same distribution.  If the p-values have negligible fluctuations with respect to the values obtained by the tests comparing the same triggers, then the systematic effect in the profiles is negligible with respect to half\footnote{Once each group is using nearly half of the integrated luminosity.} of the statistics available.
 
-
+%\footnote{The p-value here is defined by: $P-value \approx f(x, k) = \frac{1}{2^{k/2}\Gamma(k/2)}x^{k/2 -1}e^{-x/2}$, where $x\in(0, \infty)$ and $k>0$}
 
 To provide a better insight on possible distortions, the corresponding $\chi$
 individual contributions of each group are computed allowing them to freely
@@ -205,12 +179,12 @@ $\et{}\times\abseta{}$ region.
 
 
 
-Regardless of the trigger configuration, the p-values of the homogeneity tests between the two groups result in similar values. In other words, the fluctuations in the profiles are mainly dominated by statistical fluctuations, with no sign of systematic effects due to the trigger configuration. 
+Regardless the trigger configuration, the p-values of the homogeneity tests between the two groups result in similar values. In other words, the fluctuations in the profiles are mainly dominated by statistical fluctuations, with no sign of systematic effects due to the trigger configuration. 
 
-Similar behavior is observed for the ID and calo-ID variables. The Figure~\ref{fig:groups_homogeneity_calo} shows the residuals when considering the histogram obtained with collision data collected by the trigger without \rnn{} for the first arbitrary group as a reference. The residuals are dominated by statistical fluctuations, which are within the expectations from homogeneity hypothesis for most variables and regions.
+A similar behavior is observed for the ID and calo-ID variables. The Figure~\ref{fig:groups_homogeneity_calo} shows the residuals when considering the histogram obtained with collision data collected by the trigger without \rnn{} for the first arbitrary group as a reference. The residuals are dominated by statistical fluctuations, which are within the expectations from homogeneity hypothesis for most variables and regions.
 
 
-\begin{figure}[b]
+\begin{figure}[h!]
 \begin{center}
 \begin{subfigure}[c]{.48\textwidth}
 \centering

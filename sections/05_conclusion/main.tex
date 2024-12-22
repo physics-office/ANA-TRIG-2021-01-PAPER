@@ -12,26 +12,23 @@ nonlinear correlations between rings and the optimisation of this strategy culmi
 
 In the second half of 2017, the \rnn{} algorithm replaced such a cut-based strategy
 in the \fastcalo{} decision step and became the baseline algorithm
-for triggering events containing electrons above \SI{15}{\GeV}, as part of the ATLAS online system CPU reduction campaign. The \fastcalo{} selection is crucial for CPU demands, as a more
-efficient algorithm allows to avoid heavier computations in the
-subsequent steps.  It was the first time a neural network method was employed as
-a baseline selection algorithm for event selection in the ATLAS trigger system.
+for triggering events containing electrons above \SI{15}{\GeV}, as part of the ATLAS online system CPU reduction campaign. furthermore it was the first time a neural network method was employed as a baseline selection algorithm for event selection in the ATLAS trigger system.
 
 
 During 2017 operation, based on neural networks trained with simulated data, a
 reduction factors of 13 in the \fastcalo{} and of 2 in
 the \hlt{} of fake rates were achieved with respect to the offline likelihood, while
-keeping high electron efficiency when the \rnn{} was set to operate in a
-configuration similar to lowest energy-threshold unprescaled single electron
-trigger. For 2018, the \rnn{} was trained with collision
+keeping high electron efficiency similar to lowest energy-threshold unprescaled single electron trigger. For 2018, the \rnn{} was trained with collision
 data resulting in an estimated additional reduction factor of 1.19--1.69 in the  \fastcalo{} with respect to 2017. 
+Additionally, the \rnn{} was also studied through the offline likelihood perspective to bring additional insights on its behavior using two equivalent single electron trigger with and without the \rnn{}. The proposed quadrant analysis allowed to observe high agreement between both triggers with slight shifts towards the signal region in the disagreement profiles of some calorimetry-based variables. Finally, when considering homogeneity test, the p-values of the between the two groups result in similar values. In other words, the fluctuations in the profiles are mainly dominated by statistical fluctuations, with no sign of systematic effects due to the trigger configuration.
 
 
-Additionally, the \rnn{} was also studied through the offline likelihood perspective to bring additional insights on its behavior using two equivalent single electron trigger with and without the \rnn{}.
-The proposed quadrant analysis
-allowed to observe high agreement between both triggers with slight shifts
-towards the signal region in the disagreement profiles of some calorimetry-based
-variables. Finally, when considering homogeneity test, the p-values of the between the two groups result in similar values. In other words, the fluctuations in the profiles are mainly dominated by statistical fluctuations, with no sign of systematic effects due to the trigger configuration.
+
+Physics beyond the Standard Model is getting more attention at the LHC and is expected to be part of the main focus in the data-taking phases to
+come. At the beginning of Run~3, the \rnn was updated to comprise closer-by electron (boosted topologies) events, particularly limiting the effect of other contributions at
+the edge of the feature extraction window, which can result from these physics
+processes. In addition, an extension to \rnn below 15 GeV was implemented motivated by the high CPU demand of all triggers in this kinematic region.
+
 
 
 
@@ -101,27 +98,6 @@ electromagnetic information followed by the full \rnn{} decision.
 
 
 
-
-% Boosted configurations
-Physics beyond the Standard Model is getting more attention at the LHC and is expected to be part of the main focus in the data-taking phases to
-come. We aim at improving the \rnn{} algorithm to comprise boosted
-configurations, particularly limiting the effect of other contributions at
-the edge of the feature extraction window, which can result from these physics
-processes. Additionally, the \rnn{} is being evaluated as an alternative
-strategy for a long-lived particle analysis. %($\text{a}\rightarrow\text{H}(\gamma\gamma)Z(l^+l^-)$).
-
-
-Nevertheless, we expect that the \rnn{} efficiency can still be improved. Indeed, the feature extraction
-algorithm has many limitations as being initially proposed for online
-operation, but a more complex algorithm accounting for the cell sizes can
-provide more precise information, which, eventually, can be helpful for the
-selection task. Shower asymmetries may be captured if extracting ring segments,
-i.e.\@ quarter rings delimited by $\eta\times\phi$ axis. Complementary
-discriminant information may be obtained by fusing the ring sums with the shower shape variables,
-which is under investigation. Deep learning models can be exploited instead of
-single hidden-layer MLPs, in order to achieve better suited decision boundaries,
-specially considering models designed to exploit the sequential structure
-presented by the rings.
 
 
 % Calibration
