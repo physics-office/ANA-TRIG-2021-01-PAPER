@@ -15,24 +15,18 @@ In the second half of 2017, the \rnn{} algorithm replaced a cut-based strategy
 in the \fastcalo{} decision step of the \hlt{} and became the baseline algorithm
 for triggering events containing electrons with \ET above \SI{15}{\GeV}, 
 as part of the ATLAS online system's CPU-time reduction campaign. 
-Furthermore, it was the first time a neural-network method was employed as a 
-baseline event-selection algorithm in the ATLAS trigger system.
+Furthermore, it was the first time a neural-network method was employed as a baseline event-selection algorithm in the ATLAS trigger system.
 
 
-During 2017 operation, with the \rnn{} algorithm trained on simulated data, 
-fake-electron trigger rates were reduced by a factor of 13 in the \fastcalo{} step 
-and by a factor of 2 overall in the \hlt{} with respect to the offline likelihood algorithm, while
-achieving high electron-selection efficiencies very similar to those of relevant single-electron triggers without the \rnn{}. 
-For 2018, the \rnn{} was trained with collision
-data, resulting in an estimated additional reduction factor of 1.19--1.69 for fake-electron triggers in the \fastcalo{} step with respect to 2017. 
-The \rnn{} was also studied from an offline likelihood perspective to obtain additional insights into its behaviour by using two equivalent single-electron triggers with and without the \rnn{}. The \enquote{quadrant analysis} showed a high level of agreement between the two triggers, with the \rnn{} trigger showing a slight bias towards the signal region in the disagreement profiles of some calorimetry-based variables. Finally, the \enquote{homogeneity tests} between the two groups of data resulted in similar $p$-values. In other words, the fluctuations in the profiles are mainly statistical, with no sign of systematic effects due to the trigger configuration.
+During 2017 operation, the \rnn{} algorithm trained on simulated data reduced fake-electron trigger rates by a factor of 13 in the \fastcalo{} step and by a factor of 2 overall in the \hlt{} with respect to the offline likelihood algorithm. At same time, the \rnn{} achieving high electron-selection efficiencies very similar to those of relevant single-electron triggers without the \rnn{}. For 2018, the \rnn{} was trained with collision data, resulting in an estimated additional fake-rate reduction factor of 1.19--1.69 for fake-electron triggers in the \fastcalo{} step with respect to 2017. 
+
+
+The \rnn{} was also studied from an offline likelihood perspective to obtain additional insights into its behavior by using two equivalent single-electron triggers with and without the \rnn{}. 
+The \enquote{quadrant analysis} showed a high level of agreement between the two triggers, with the \rnn{} trigger showing a slight bias towards the signal region in the disagreement profiles of some calorimetry-based variables. Finally, the \enquote{homogeneity tests} between the data collected using triggers with and without the \rnn{} resulted in similar $p$-values. In other words, the fluctuations in the profiles of the calorimetry and track variables are mainly statistical, with no sign of systematic effects due to the trigger configuration.
 
 
 
-Physics beyond the Standard Model is getting more attention at the LHC and is expected to be part of the main focus in the data-taking phases to
-come. At the beginning of \RunThr, the \rnn was updated to include events in which electrons have smaller angular separations (such as in boosted topologies), particularly limiting the effect of other contributions at
-the edge of the feature extraction window, which can result from these physics
-processes. In addition, the \rnn was extended into the \ET region below 15~GeV, motivated by the high CPU demands of triggers in this kinematic region.
+%Physics beyond the Standard Model is getting more attention at the LHC and is expected to be part of the main focus in the data-taking phases to come. At the beginning of \RunThr, the \rnn was updated to include events in which electrons have smaller angular separations (such as in boosted topologies), particularly limiting the effect of other contributions at ,the edge of the feature extraction window, which can result from these physics processes. %In addition, the \rnn was extended into the \ET region below 15~GeV, motivated by the high CPU demands of triggers in this kinematic region.
 
 
 
