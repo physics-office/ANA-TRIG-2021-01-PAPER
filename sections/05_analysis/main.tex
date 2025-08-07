@@ -2,33 +2,15 @@
 \section{\rnn{} assessment vs cut-based triggers}%
 \label{sec:off_ana}
 
-This section presents a more detailed assessment of the \rnn{}'s behavior 
-in the period 2017--2018 relative to the previous electron trigger's cut-based strategy. 
-The potential biases due to introduction of the \rnn into the electron trigger sequence are evaluated in 2017 data events selected using the $Z\rightarrow e^+e^-$ tag-and-probe method~\cite{TRIG-2018-05}.
-Since each \tnp{} event has one electron (referred to as the ‘probe electron’) which was not 
-used to select that event at trigger level, two analyses were performed to assess the
-trigger performance with and without the \rnn{}, with the selection applied either to
-the tag electron (Homogeneity Tests) or to the probe electron (Quadrant Analysis). 
-
-
-
-The Quadrant Analysis allows a direct assessment of possible bias due to the
-introduction of the \rnn{}, when applied to the probe electron, by comparing the profiles for all possible disjoint
-decisions from the two trigger classifiers. 
-
-Although it is reasonable to assume that the tag and probe showers 
-develop independently, and that the \rnn{} when applied to
-the tag selection cannot, in principle, alter the profile of the probes besides
-changing the number of \tnp{} pairs, this assumption should be tested. 
-An evaluation of any possible systematic effect due to using the \rnn{}, applied to the tag selection, 
-in obtaining the likelihood probability distribution functions (PDFs), 
-used for offline and final HLT selection, is performed with the Homogeneity Tests.
-
+This section presents a detailed comparison of the \rnn{}'s behavior with respect to the electron trigger's cut-based algorithm used to trigger ATLAS data in 2017 and 2018. This comparison allows to quantify any potential biases that could be due to the introduction of the \rnn into the electron trigger sequence. This comparison is based on an unbiased sample of electron candidates available in the 2017 ATLAS data selected using the $Z\rightarrow e^+e^-$ tag-and-probe method~\cite{TRIG-2018-05}. Since each of these events has one electron (referred to as the ‘probe electron’) which was not used to select that event at trigger level, it can be used to compare the two algorithms in an unbiased way considering candidates that are also identified as good electron candidates by the offline electron identification algorithm. A first analysis is performed on this sample to assess the trigger performance applying the \rnn{} selection either to the probe electron (Quadrant Analysis). To go further, a second dataset is used using a special dataset taken in 2017 operating both algorithms. The associated T&P sample allows to check the exact biases introduced in the trigger selection using one or the other algorithm on the tag electron used to select the event (Homogeneity tests)
 
 
 \subsection{Quadrant Analysis}\label{ssec:quadrant}
 
-The Quadrant Analysis was developed to compare the decisions of two classifiers. Given signal candidates and two classifiers, these are the possibilities:\ either both accept or reject the candidates, or only one accepts the candidates. The four possible decision quadrants are evaluated from shower-shape distributions. Furthermore, in this analysis, it is also possible to evaluate the disagreement between two classifiers. The disagreement between two classifiers $\textbf{A}$ and $\textbf{B}$ can be defined as:
+The Quadrant Analysis was developed to compare the decisions of two classifiers. Given signal candidates and two classifiers, these are the possibilities:\ either both accept or reject the candidates, or only one accepts the candidates. 
+
+
+The four possible decision, denoted to as quadrants, are evaluated as a function of the shower-shape variables used to make the offline electron likelihood selection to anticipate any possible bias in the offline selection from the trigger step. Furthermore, in this analysis, it is also possible to evaluate the disagreement between two classifiers. The disagreement between two classifiers $\textbf{A}$ and $\textbf{B}$ can be defined as:
 
 \begin{equation}
     \text{disagreement} = \frac{N_{\textbf{A}}+N_{\textbf{B}}}{N_{\textbf{A}}+N_{\textbf{B}}+N_{\textbf{AB}}+N_{!\textbf{AB}}}
@@ -41,15 +23,17 @@ trigger selection performance using the \enquote{tight} requirement for the dupl
 
 \subsubsection{Results}\label{top:quadrant_results}
 
-The Quadrant Analysis was performed on the four shower shapes variables (\reta{}, \rphi{}, \eratio{} and \rhad{})~\cite{TRIG-2018-05} used in the likelihood~\cite{PERF-2017-01} selection, which have the best discrimination power for electrons. 
 
-As shown in Figure~\ref{fig:quadrant_calo_variables_30GeV}, the disagreement is small and in most cases. Here, only the results for $0.6<|\eta|<0.8$ and $35<\ET<40$~\GeV are shown, but this behaviour is also observed for other regions of the $\eteta$ phase space. 
+The four possible decision situations (quadrants) are evaluated respectively to the different shower-shapes (\reta{}, \rphi{}, \eratio{} and \rhad{})~\cite{TRIG-2018-05} used in the offline likelihood selection.
+
+As shown in Figure~\ref{fig:quadrant_calo_variables_30GeV}, the disagreement in most cases of the order of 1\% regardless to the shower shape variables values used in the offline electron identification likelihood.
+and in most cases. Here, only the results for $0.6<|\eta|<0.8$ and $35<\ET<40$~\GeV are shown, but this behaviour is also observed for other regions of the $\eteta$ phase space. 
 One should note that the working points of the two triggers are not exactly the same, although the \rnn{} aims to achieve the same signal efficiency as the cut-based strategy and was operating as desired.  In other words, the height differences between the blue and red profiles in Figure~\ref{fig:quadrant_calo_variables_30GeV} are mainly due to small efficiency differences between the two triggers.
 
 
 
 
-The two triggers behave very similarly for all variables in the region shown in Figure~\ref{fig:quadrant_calo_variables_30GeV}, even if some slight shifts between blue and red profiles can be seen. This is the case for \reta{} and \rphi{}, where the \rnn{} trigger consistently selects slightly more events in the signal region, i.e.\ ones with slightly narrower showers in $\eta{}$ and $\phi{}$, respectively, in the EM2 layer. The \rnn{} trigger's behaviour shows an even smaller effect in \rhad{}, where tighter tails are observed.%, resulting in fewer electrons with 10\% to 30\% of their energy in EM1, 1\% to 2\% in EM3 and more than 4~GeV hadronic leakage. 
+The two triggers behave very similarly for all variables in the region shown in Figure~\ref{fig:quadrant_calo_variables_30GeV}, even if some slight shifts between blue and red profiles can be seen. This is the case for \reta{} and \rphi{}, where the \rnn{} trigger consistently selects slightly more events in the desired region of the histogram closer to one, i.e.\ ones with slightly narrower showers in $\eta{}$ and $\phi{}$, respectively, in the EM2 layer. The \rnn{} trigger's behaviour shows an even smaller effect in \rhad{}, where tighter tails are observed.%, resulting in fewer electrons with 10\% to 30\% of their energy in EM1, 1\% to 2\% in EM3 and more than 4~GeV hadronic leakage. 
 The \eratio{} variable also shows the \rnn{} trigger has a slight bias towards selecting more events in the tail region. 
 %Interestingly, a few events with $0.5<\eratio{}<0.7$ are accepted by the trigger with the \rnn{}, probably due to electrons resulting from premature showers with a barycentre near the boundary between two cells in EM1. 
 Although similar behaviour is seen in other 
@@ -87,8 +71,8 @@ regions of the $\eteta$ phase space.
 
 \caption{\label{fig:quadrant_calo_variables_30GeV}
     Quadrant Analysis plots for a selection of shower-shape variables used in the offline electron identification algorithm for the $0.6<\abseta{}<0.8$ and $30<\et{}<35$~\GeV region. The top pad in each figure shows the raw number of candidates for the four mutually exclusive cases: accepted both with and without 
-	the \rnn{} (black); accepted only with the \rnn{} (blue); accepted only without the \rnn{} (red); rejected both with and without the \rnn{} (grey). The bottom pad shows 
-	the disagreement as defined in Eq.~\eqref{eq:disagreement}.
+	the \rnn{} (black); accepted only with the \rnn{} (blue); accepted only with the Cut-based (red); rejected both with \rnn and with Cut-based (grey). The bottom pad shows 
+	the disagreement as defined in Eq.~\eqref{eq:disagreement}. The absence of points of disagreement is due to the absence of events in the bins relating to the blue and red histogram cases.
 }
 %Quadrant analysis plots for the offline-reconstructed
 %calorimetry variables employed in the
@@ -120,7 +104,7 @@ likelihood for the $0.6<\abseta{}<0.8$ and $35<\et{}~[\text{GeV}]<40$ slice. The
 \subsection[Homogeneity Tests]{Homogeneity Tests}\label{ssec:agreement}
 
 In this analysis, the impact on the offline likelihood identification requirements of using different triggers, \rnn{} and cut-based, applied either to the tag electron, is evaluated. 
-This study requires a pair of duplicated triggers, applying a HLT\_e28\_lhtight\_nod0\_(noringer)\_ivarloose trigger selection with and without the \rnn{} (noringer), operating together online. The analysis is performed using the full 2027 collision data with the same selection as used for the offline likelihood optimization for electrons with \ET above \SI{15}{\GeV}~\cite{PERF-2017-01}.
+This study requires a pair of duplicated triggers, applying a HLT\_e28\_lhtight\_nod0\_(noringer)\_ivarloose trigger selection with and without the \rnn{} (noringer), operating together online. The analysis is performed using the full 2017 collision data with the same selection as used for the offline likelihood optimization for electrons with \ET above \SI{15}{\GeV}~\cite{PERF-2017-01}.
 
 
 
