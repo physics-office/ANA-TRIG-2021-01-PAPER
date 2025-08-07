@@ -7,9 +7,9 @@
 %
 % Note that this file can be overwritten when atlaslatex is updated.
 %
-% Copyright (C) 2002-2024 CERN for the benefit of the ATLAS collaboration.
+% Copyright (C) 2002-2025 CERN for the benefit of the ATLAS collaboration.
 %-------------------------------------------------------------------------------
-\ProvidesPackage{latex/atlascontribute}[2024/06/25 v15.4.0 ATLAS analysis contributions]
+\ProvidesPackage{latex/atlascontribute}[2025/06/26 v15.12.0 ATLAS analysis contributions]
 \NeedsTeXFormat{LaTeX2e}
 
 %-------------------------------------------------------------------------------
@@ -23,6 +23,7 @@
 }
 \DeclareBoolOption[false]{xtab}
 \DeclareBoolOption[false]{longtable}
+\DeclareBoolOption[false]{xltab}
 \DeclareBoolOption[true]{authblk}
 \ProcessKeyvalOptions*
 
@@ -51,9 +52,18 @@
 % Include booktabs package to get a nicer table
 \RequirePackage{booktabs}
 
+% xtab package deprecated
+\ifthenelse{\boolean{ACTR@xtab}}{%
+  \PackageWarningNoLine{atlascontribute}{%
+    xtab does not work with atlascontribute as of TeX Live 2025.
+    This option is therefore deprecated
+  }%
+}{}
+
 % Include longtable or xtab package if necessary
 \ifthenelse{\boolean{ACTR@longtable}}{\RequirePackage{longtable}}{}
 \ifthenelse{\boolean{ACTR@xtab}}{\RequirePackage{xtab}}{}
+\ifthenelse{\boolean{ACTR@xltab}}{\RequirePackage{xltabular}}{}
 
 % If multiple authors/affiliations are needed, use the authblk package
 % Put comma between insititues instead of new line.
@@ -115,18 +125,26 @@
         \bottomrule
       \end{longtable}
     }{%
-      \ifthenelse{\boolean{ACTR@xtab}}{%
-        \begin{xtabular}{>{\raggedright}p{\ACTR@namewidth}p{\ACTR@linewidth}}
+      \ifthenelse{\boolean{ACTR@xltab}}{%
+        \begin{xltabular}{\textwidth}{>{\raggedright}p{\ACTR@namewidth}X}
           \toprule
           \ACTR@Contributors
           \bottomrule
-        \end{xtabular}
+        \end{xltabular}
       }{%
-        \begin{tabular}{>{\raggedright}p{\ACTR@namewidth}p{\ACTR@linewidth}}
-          \toprule
-          \ACTR@Contributors
-          \bottomrule
-        \end{tabular}
+        \ifthenelse{\boolean{ACTR@xtab}}{%
+          \begin{xtabular}{>{\raggedright}p{\ACTR@namewidth}p{\ACTR@linewidth}}
+            \toprule
+            \ACTR@Contributors
+            \bottomrule
+          \end{xtabular}
+        }{%
+          \begin{tabular}{>{\raggedright}p{\ACTR@namewidth}p{\ACTR@linewidth}}
+            \toprule
+            \ACTR@Contributors
+            \bottomrule
+          \end{tabular}
+        }
       }
     }
   }

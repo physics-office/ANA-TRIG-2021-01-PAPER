@@ -1,9 +1,9 @@
 # Makefile for creating an ATLAS LaTeX document
 
-# Copyright (C) 2002-2024 CERN for the benefit of the ATLAS collaboration
+# Copyright (C) 2002-2025 CERN for the benefit of the ATLAS collaboration
 #------------------------------------------------------------------------------
-# By default makes ANA-TRIG-2021-01-PAPER.pdf using target run_pdflatex.
-# Replace ANA-TRIG-2021-01-PAPER with your main filename or add another target set.
+# By default makes mydocument.pdf using target run_pdflatex.
+# Replace mydocument with your main filename or add another target set.
 # Replace BIBTEX = biber with BIBTEX = bibtex if you use bibtex instead of biber.
 # Adjust FIGSDIR for your figures directory tree.
 # Adjust the %.pdf dependencies according to your directory structure.
@@ -24,7 +24,6 @@ PDFLATEX = pdflatex
 # BIBTEX   = bibtex
 BIBTEX   = biber
 # TLVERS   = $(shell pdflatex --version | grep -Go 'TeX Live [0-9]*' | grep -Go '[0-9].*')
-# TWIKI    = https://twiki.cern.ch/twiki/bin/view/AtlasProtected/PubComLaTeXFAQ
 
 #-------------------------------------------------------------------------------
 # The main document filename
@@ -40,7 +39,7 @@ FIGSDIR  = figs
 rwildcard=$(foreach d,$(wildcard $1*),$(call rwildcard,$d/,$2) $(filter $(subst *,%,$2),$d))
 EPSTOPDFFILES = $(call rwildcard, $(FIGSDIR), *eps-converted-to.pdf)
 
-# Default target - make ANA-TRIG-2021-01-PAPER.pdf with latexmk.
+# Default target - make mydocument.pdf with latexmk.
 default: run_latexmk
 # Use pdflatex/biber instead to compile.
 # default: run_pdflatex
@@ -69,8 +68,8 @@ run_latexmk:
 #-------------------------------------------------------------------------------
 # Specify the tex and bib file dependencies for running pdflatex
 # If your bib files are not in the main directory adjust this target accordingly
-#%.pdf: %.tex *.tex bib/*.bib
-%.pdf:  %.tex *.tex *.bib
+#%.pdf:	%.tex *.tex bib/*.bib
+%.pdf:	%.tex *.tex *.bib
 	$(PDFLATEX) $<
 	-$(BIBTEX)  $(basename $<)
 	$(PDFLATEX) $<
@@ -112,9 +111,9 @@ newdocument:
 	sed s/atlas-document/$(BASENAME)/ template/$(TEMPLATE).tex >$(BASENAME).tex
 
 newdocumenttexmf:
-	sed s/atlas-document/$(BASENAME)/ template/$(TEMPLATE).tex | \
-	sed 's/\\RequirePackage{latex\/atlaslatexpath}/% \\RequirePackage{latex\/atlaslatexpath}/' \
-	>$(BASENAME).tex
+	  sed s/atlas-document/$(BASENAME)/ template/$(TEMPLATE).tex | \
+	  sed 's/\\RequirePackage{latex\/atlaslatexpath}/% \\RequirePackage{latex\/atlaslatexpath}/' \
+	  >$(BASENAME).tex
 
 newpapermetadata:
 	cp template/atlas-paper-metadata.tex $(BASENAME)-metadata.tex
@@ -132,34 +131,34 @@ newauxmat:
 
 help:
 	@echo "To create a new paper/CONF Note/PUB Note draft give the command:"
-	@echo "make newpaper [BASENAME=ANA-TRIG-2021-01-PAPER]"
+	@echo "make newpaper [BASENAME=mydocument]"
 	@echo "To create a new ATLAS note draft give the command:"
-	@echo "make newnote [BASENAME=ANA-TRIG-2021-01-PAPER]"
+	@echo "make newnote [BASENAME=mydocument]"
 	@echo "To create a long document (book) like a TDR:"
-	@echo "make newbook [BASENAME=ANA-TRIG-2021-01-PAPER]"
+	@echo "make newbook [BASENAME=mydocument]"
 	@echo ""
 	@echo "To compile the paper give the command"
 	@echo "make"
-	@echo "If your bib files are not in the main directory, adjust the %.pdf target accordingly."
+	@echo "If your bib files are not in the main directory, adjust the %.pdf target accordingly." 
 	@echo ""
 	@echo "To compile the document using latexmk give the command:"
 	@echo "make run_latexmk"
 	@echo "You can also adjust the 'default' target."
 	@echo ""
 	@echo "If atlaslatex is installed centrally, e.g. in ~/texmf:"
-	@echo "make newpapertexmf|newnotetexmf|newbooktemf [BASENAME=ANA-TRIG-2021-01-PAPER]"
+	@echo "make newpapertexmf|newnotetexmf|newbooktemf [BASENAME=mydocument]"
 	@echo ""
 	@echo "If you need a standalone draft cover give the commands:"
-	@echo "make draftcover [BASENAME=ANA-TRIG-2021-01-PAPER]"
-	@echo "pdflatex ANA-TRIG-2021-01-PAPER-draft-cover"
+	@echo "make draftcover [BASENAME=mydocument]"
+	@echo "pdflatex mydocument-draft-cover"
 	@echo ""
 	@echo "If you need a standalone preprint cover give the commands:"
-	@echo "make preprintcover [BASENAME=ANA-TRIG-2021-01-PAPER]"
-	@echo "pdflatex ANA-TRIG-2021-01-PAPER-preprint-cover"
+	@echo "make preprintcover [BASENAME=mydocument]"
+	@echo "pdflatex mydocument-preprint-cover"
 	@echo ""
 	@echo "If you need a document for HepData material give the commands:"
-	@echo "make newdata [BASENAME=ANA-TRIG-2021-01-PAPER]"
-	@echo "pdflatex ANA-TRIG-2021-01-PAPER-hepdata-main"
+	@echo "make newdata [BASENAME=mydocument]"
+	@echo "pdflatex mydocument-hepdata-main"
 	@echo ""
 	@echo "make clean    to clean auxiliary files (not output PDF)"
 	@echo "make cleanpdf to clean output PDF files"

@@ -1,0 +1,130 @@
+%-------------------------------------------------------------------------------
+% Prints information about HEPData and code availability.
+% This package requires biblatex to be loaded.
+%
+% See ChangeLog or Git log for history of changes.
+% Responsible: Ian Brock (ian.brock@cern.ch)
+%
+% Note that this file can be overwritten when atlaslatex is updated.
+%
+% Copyright (C) 2002-2025 CERN for the benefit of the ATLAS collaboration.
+%-------------------------------------------------------------------------------
+\ProvidesPackage{latex/atlasdatapolicy}[2025/06/26 v15.12.0 ATLAS data policy]
+\NeedsTeXFormat{LaTeX2e}
+
+%-------------------------------------------------------------------------------
+% More advanced if syntax.
+\RequirePackage{ifthen}
+% Use kvoptions package to set options.
+\RequirePackage{kvoptions}
+\SetupKeyvalOptions{
+  family=APOLICY,
+  prefix=APOLICY@
+}
+\DeclareBoolOption[true]{hepdatatext}
+\DeclareBoolOption[true]{hepdataexist}
+\DeclareBoolOption[true]{athenatext}
+\ProcessKeyvalOptions*
+
+% This package is written using expl3 syntax.
+\ExplSyntaxOn
+%-------------------------------------------------------------------------------
+% Provide command to set options
+\keys_define:nn { atlasdatapolicy } {
+  hepdatatext .bool_set:N = \l__atlasdatapolicy_hepdatatext_bool,
+  hepdataexist .bool_set:N = \l__atlasdatapolicy_hepdataexist_bool,
+  athenatext .bool_set:N = \l__atlasdatapolicy_athenatext_bool,
+}
+\NewDocumentCommand \atlasdatapolicy { m }
+  { \keys_set:nn { atlasdatapolicy } {#1} }
+
+% Apply atlasdatapolicy options to expl3 variables.
+\AtBeginDocument {
+  \ifthenelse{\boolean{APOLICY@hepdatatext}}
+    { \bool_set_true:N \l__atlasdatapolicy_hepdatatext_bool }
+    { \bool_set_false:N \l__atlasdatapolicy_hepdatatext_bool }
+  \ifthenelse{\boolean{APOLICY@hepdataexist}}
+    { \bool_set_true:N \l__atlasdatapolicy_hepdataexist_bool }
+    { \bool_set_false:N \l__atlasdatapolicy_hepdataexist_bool }
+  \ifthenelse{\boolean{APOLICY@athenatext}}
+    { \bool_set_true:N \l__atlasdatapolicy_athenatext_bool }
+    { \bool_set_false:N \l__atlasdatapolicy_athenatext_bool }
+}
+
+%-------------------------------------------------------------------------------
+% Macro to print HEPData and Athena information (if requetsed).
+\NewDocumentCommand{\printatlasdatapolicy} {} {%
+  % Print HEPData text if wanted.
+  \tl_new:N \l__atlasdatapolicy_hepdata_tl
+  \bool_if:NTF \l__atlasdatapolicy_hepdatatext_bool
+    { \PackageInfo{atlasdatapolicy}{Defining~text~for~HEPData}
+      \tl_set:Nn \l__atlasdatapolicy_hepdata_tl {The~public~release~of~data~supporting~the~findings~of~this~article~will~follow~the~CERN~Open~Data~Policy\nobreakspace\cite{CERN-OPEN-2020-013}.}
+      \bool_if:NTF \l__atlasdatapolicy_hepdataexist_bool
+        { \tl_if_empty:NTF \AtlasHEPDataRecord
+          { \PackageInfo{atlasdatapolicy}{HEPData~text~does~not~have~a~URL}
+            \tl_put_right:Nn \l__atlasdatapolicy_hepdata_tl {~The~values~of~relevant~plots~and~tables~associated~with~this~article~are~stored~in~HEPData.}
+          }
+          {
+           \PackageInfo{atlasdatapolicy}{HEPData~text~has~a~URL}
+           \tl_put_right:Nn \l__atlasdatapolicy_hepdata_tl {~The~values~of~relevant~plots~and~tables~associated~with~this~article~are~stored~in~HEPData~\url{\AtlasHEPDataRecord}.}
+          }
+        }
+        {
+          \PackageInfo{atlasdatapolicy}{Email~address~about~plots~and~tables}
+          \tl_put_right:Nn \l__atlasdatapolicy_hepdata_tl {~Inquiries~about~plots~and~tables~associated~with~this~article~can~be~addressed~to~\href{mailto:atlas.publications@cern.ch}{atlas.publications@cern.ch}.}
+        }
+      \tl_put_right:Nn \l__atlasdatapolicy_hepdata_tl {\par}
+      \l__atlasdatapolicy_hepdata_tl
+    }
+    { \PackageInfo{atlasdatapolicy}{Empty~text~for~HEPData}
+    }
+
+  % Print Athena text if wanted.
+  \tl_new:N \l__atlasdatapolicy_athena_tl
+  \bool_if:NTF \l__atlasdatapolicy_athenatext_bool
+    { \PackageInfo{atlasdatapolicy}{Defining~Athena~only~text}
+      \tl_set:Nn \l__atlasdatapolicy_athena_tl {The~ATLAS~Collaboration’s~Athena~software,~
+        including~the~configuration~of~the~event~generators,~
+        is~open~source~(\url{https://gitlab.cern.ch/atlas/athena}).
+        \par}
+      \PackageInfo{atlasdatapolicy}{Printing~Athena~only~text}
+      \l__atlasdatapolicy_athena_tl
+    }
+    {
+      \PackageInfo{atlasdatapolicy}{Empty~text~for~Athena~only}
+    }
+}
+\ExplSyntaxOff
+
+% \NewDocumentCommand{\oldatlasdatapolicy} {} {%
+%   % Print HEPData text if wanted.
+%   \ifthenelse{\boolean{APOLICY@hepdatatext}}{%
+%     \PackageInfo{atlasdatapolicy}{Defining text for HEPData}
+%     The public release of data supporting the findings of this article will follow the CERN Open Data Policy~\cite{CERN-OPEN-2020-013}.
+%     \ifthenelse{\boolean{APOLICY@hepdataexist}}{%
+%       \ifthenelse {\equal{\AtlasHEPDataRecord}{}} {%
+%         \PackageInfo{atlasdatapolicy}{HEPData text does not have a URL}
+%         The values of relevant plots and tables associated with this article are stored in HEPData.
+%       }{%
+%         \PackageInfo{atlasdatapolicy}{HEPData text has a URL}
+%         The values of relevant plots and tables associated with this article are stored in HEPData \url{\AtlasHEPDataRecord}.
+%       }
+%     }{
+%       \PackageInfo{atlasdatapolicy}{Email address about plots and tables}
+%       Inquiries about plots and tables associated with this article can be addressed to \href{mailto:atlas.publications@cern.ch}{atlas.publications@cern.ch}.
+%     }
+%   }{%
+%     \PackageInfo{atlasdatapolicy}{Empty text for HEPData}
+%   }
+
+%   % Print Athena text if wanted.
+%   \ifthenelse{\boolean{APOLICY@athenatext}}{%
+%     \PackageInfo{atlasdatapolicy}{Printing Athena text}
+%     The ATLAS Collaboration’s Athena software, including the configuration of the event generators, is open source (\url{https://gitlab.cern.ch/atlas/athena}).
+%     \par
+%   }{%
+%     \PackageInfo{atlasdatapolicy}{Empty text for Athena}
+%   }
+% }
+
+\endinput

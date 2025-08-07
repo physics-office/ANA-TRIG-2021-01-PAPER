@@ -1,8 +1,8 @@
 # Changelog
 
-*Responsible:* Ian Brock (Ian.Brock@cern.ch)
+*Responsible:* Ian Brock [Ian.Brock@cern.ch](mailto:Ian.Brock@cern.ch)
 
-Copyright (C) 2002-2024 CERN for the benefit of the ATLAS collaboration.
+Copyright (C) 2002-2025 CERN for the benefit of the ATLAS collaboration.
 
 All notable changes to the ATLAS LaTeX package are documented in this file.
 
@@ -11,6 +11,140 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 Changes are sorted into the following categories:
 Added, Changed, Deprecated, Removed, Fixed, Security.
+
+---
+
+## [15.12.0] - 2025-06-26
+
+### Added
+
+- June update of publications.
+- Add `xltab` option for `atlascontribute` package, as `xtab` seems to not work properly with TeX Live 2025.
+
+### Changed
+
+- Use `xltabular` package for `atlasphysics` documentation.
+
+### Deprecated
+
+- Only TeX Live 2018 and later are now tested, although things may still work for earlier versions.
+- `orcidlink.sty` moved to `obsolete` directory, as it is not used.
+- Use of traditional BibTeX further deprecated and style files removed.
+
+### Removed
+
+- Old files in `obsolete` directory removed.
+
+---
+
+## [15.11.2] - 2025-05-13
+
+### Added
+
+- April update of publications.
+- Fix the years of a  number of publications.
+- Add detector description for Run 2 and 3 combined analyses.
+- New style file `atlasdatapolicy.sty` to handle data availability and Athena.
+
+### Changed
+
+- Update links in `README.md`.
+- `atlasdatapolicy.sty` added to `atlaslatex_update.sh`.
+
+### Deprecated
+
+- Do not use `documentclass` options to steer data policy.
+
+---
+
+## [15.10.0] - 2025-03-28
+
+### Added
+
+- March 2025 update of publications.
+- Fixes to `atlas-SUSY.bib` and `atlas-useful.bib`.
+- Add macros for data availability and Athena in papers.
+- Include update to Monte Carlo snippets.
+
+### Changed
+
+- Update link to HEPData record. Use `https` for arXiv.
+
+### Deprecated
+
+- Use `\HEPDataRecord` rather than `\HepDataRecord` for HEPData record number.
+
+### Removed
+
+- Citation `DAgostini:1995` removed from `ATLAS-useful.bib` as it is a duplicate of `DAgostini:1994fjx`.
+
+---
+
+## [15.9.0] - 2025-01-24
+
+### Added
+
+- January 2025 update of publications.
+- Fix a number of publication years and report numbers.
+- Add 2025 computing acknowledgements.
+
+### Changed
+
+- Clarify some of the trigger rate information in the detector template.
+
+---
+
+## [15.8.0] - 2025-01-14
+
+### Added
+
+- October to December 2024 update of publications.
+
+### Changed
+
+- Update copyright to 2025.
+- Equation macros in `atlasxref.sty` now include parentheses to follow ATLAS Style Guide.
+  The `cleveref` package includes parentheses by default.
+- Update link to Physics Office documentation in `README.md`.
+
+### Fixed
+
+- Fix syntax in `tex_dollars.py` to avoid complaints in recent Python versions.
+
+---
+
+## [15.7.0] - 2024-10-09
+
+### Added
+
+- September update of publications.
+
+### Changed
+
+- Add `\xspace` to topo-cluster definition.
+- Remove speed of light, `c`, in ATLAS coordinate system footnote.
+
+---
+
+## [15.6.1] - 2024-09-12
+
+### Added
+
+- August update of publications.
+- Add PYTHIA 8.3 reference.
+- Update trigger reference in detector template for Run 3.
+
+---
+
+## [15.5.0] - 2024-07-25
+
+### Added
+
+- June update of publications.
+
+### Changed
+
+- Titles of several TDRs fixed to match title page.
 
 ---
 
@@ -1805,7 +1939,7 @@ Hopefully this will be fixed in the next release.
 
 ---
 
-## [Unreleased] - 2024-01-XX
+## [Unreleased] - 2025-04-XX
 
 ### Added
 
